@@ -21,9 +21,53 @@ RES_P2 = r"d:\project\MathStruct\result\problem02"
 OUT_FIGS = os.path.join(r"d:\project\MathStruct\result\figures", "problem02")
 OUT_TABS = os.path.join(r"d:\project\MathStruct\result\tables", "problem02")
 
+# P1 接口路径：第二问所有脚本通过此路径消费第一问导出的结果文件
+# 对应 docs/problem-01/handoff.md §4 所列的 4 项接口产物
+P1_TABLES = os.path.join(r"d:\project\MathStruct\result\tables", "problem01")
+P1_DOMAIN_Q_CSV = os.path.join(P1_TABLES, "table_p1_domain_q_a1.csv")   # 7域质量中位数
+P1_Q_BETA_CSV   = os.path.join(P1_TABLES, "table_p1_q_vs_beta.csv")      # ALR系数 β_d
+
 os.makedirs(RES_P2, exist_ok=True)
 os.makedirs(OUT_FIGS, exist_ok=True)
 os.makedirs(OUT_TABS, exist_ok=True)
+
+
+# ==============================================================================
+# P1→P2 接口：从第一问导出结果中读取质量锚点 Q0
+# ==============================================================================
+
+def load_p1_quality_table(fallback_q0: float = 0.584) -> dict:
+    """从第一问导出的 table_p1_domain_q_a1.csv 读取各域质量分，
+    计算样本量加权均值作为 Q0 锚点。
+
+    接口文件路径: result/tables/problem01/table_p1_domain_q_a1.csv
+    （由 src/problem01/exp05_final_closure.py 写出，
+      对应 docs/problem-01/handoff.md §4 接口项 1）
+
+    Returns
+    -------
+    dict with keys:
+        'Q0'       : float  — 样本量加权均值质量分（供 generalized_scaling_law 使用）
+        'domain_q' : dict   — {domain: q_median} 逐域中位数
+        'source'   : str    — 'p1_csv' 或 'fallback'（文件缺失时使用 fallback）
+    """
+    if not os.path.exists(P1_DOMAIN_Q_CSV):
+        import warnings
+        warnings.warn(
+            f"P1 domain-Q table not found at:\n  {P1_DOMAIN_Q_CSV}\n"
+            f"Falling back to hardcoded Q0={fallback_q0}. "
+            "Run src/problem01/exp05_final_closure.py to regenerate.",
+            RuntimeWarning, stacklevel=2
+        )
+        return {'Q0': fallback_q0, 'domain_q': {}, 'source': 'fallback'}
+
+    df = pd.read_csv(P1_DOMAIN_Q_CSV)
+    # 加权均值：以 count 为权重
+    total_count = df['count'].sum()
+    q0_weighted = float((df['q_median'] * df['count']).sum() / total_count)
+    domain_q = dict(zip(df['domain'].tolist(), df['q_median'].tolist()))
+
+    return {'Q0': q0_weighted, 'domain_q': domain_q, 'source': 'p1_csv'}
 
 # Matplotlib Publication Styling (per result/AGENTS.md: clean, no in-plot title, high DPI)
 mpl.rcParams.update({

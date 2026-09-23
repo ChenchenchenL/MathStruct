@@ -1,0 +1,7 @@
+Scenario,Horizon,Median_Score,CI80_Lower,CI80_Upper,CI80_Width,CI95_Lower,CI95_Upper,CI95_Width
+Scenario 1: Momentum,+12 Months (2026-03),40.82,19.54,57.34,37.79,9.68,71.2,61.53
+Scenario 1: Momentum,+24 Months (2027-03),42.52,14.88,63.55,48.68,5.42,81.67,76.25
+Scenario 2: Halved Pace,+12 Months (2026-03),37.59,17.26,54.45,37.19,8.43,68.14,59.71
+Scenario 2: Halved Pace,+24 Months (2027-03),35.91,11.37,57.75,46.38,4.19,76.52,72.32
+Scenario 3: Stagnation,+12 Months (2026-03),34.35,15.23,51.39,36.16,7.38,65.26,57.88
+Scenario 3: Stagnation,+24 Months (2027-03),30.0,8.83,52.04,43.21,3.17,72.58,69.41

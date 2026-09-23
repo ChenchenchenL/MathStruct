@@ -1,0 +1,11 @@
+{
+  "total_c1_models": 4576,
+  "license_open_pool": 2683,
+  "compute_analyzable_pool": 1211,
+  "compute_pretrained_models": 109,
+  "compute_chat_models": 759,
+  "bbh_reconstruction_r2": 0.9966893327745057,
+  "bbh_reconstruction_rmse": 0.8874674209747524,
+  "derived_gamma_bbh": 27.52296233767355,
+  "c3_historical_models_isolated": 26
+}

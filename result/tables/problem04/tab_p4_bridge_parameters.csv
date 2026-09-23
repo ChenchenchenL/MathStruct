@@ -1,0 +1,8 @@
+Benchmark,Pearson_r,Pearson_p_value,Spearman_rho,b_elasticity,theta_chat_lift,a_asymptote,R2_stratified,RMSE_stratified,Monotonic_Status
+Average,-0.51,2.95e-06,-0.5491,1.5367,0.7434,1.4535,0.4916,8.3057,Negative Monotonic Confirmed (Refutes T20)
+IFEval,-0.2696,1.93e-02,-0.2457,1.1992,1.5091,1.3272,0.6788,11.9806,Negative Monotonic Confirmed (Refutes T20)
+BBH,-0.6171,3.72e-09,-0.6512,2.2555,0.6155,3.397,0.4931,11.9697,Negative Monotonic Confirmed (Refutes T20)
+MATH Lvl 5,-0.3066,7.47e-03,-0.3885,1.7298,1.192,1.1201,0.2752,13.1737,Negative Monotonic Confirmed (Refutes T20)
+GPQA,-0.5674,1.11e-07,-0.6112,1.7769,0.1495,1.0248,0.2962,4.9036,Negative Monotonic Confirmed (Refutes T20)
+MUSR,-0.4188,1.84e-04,-0.3946,0.844,0.0556,-0.5822,0.1583,4.5289,Negative Monotonic Confirmed (Refutes T20)
+MMLU-PRO,-0.5916,2.27e-08,-0.64,2.1234,0.4787,3.091,0.4243,12.109,Negative Monotonic Confirmed (Refutes T20)

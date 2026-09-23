@@ -1,0 +1,11 @@
+{
+  "experiment_id": "EXP-402",
+  "data_version": "real_attachments/C_efficiency_evolution/loss_benchmark_bridge_expanded.csv",
+  "sample_size": 75,
+  "pretrained_count": 44,
+  "chat_count": 31,
+  "r2_average": 0.49158617594514564,
+  "spearman_rho_average": -0.5490735795227348,
+  "lofocv_mae": 8.157124999999999,
+  "code_entry": "src/problem04/exp02_loss_benchmark_bridge.py"
+}

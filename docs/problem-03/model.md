@@ -48,7 +48,7 @@ $$\begin{aligned}
   $$E = 1.6898, \quad A = 0.3540, \quad \alpha = 0.3400, \quad B = 1.2403, \quad \beta = 0.2799, \quad \rho = 0.6646, \quad \tau^* = 0.85$$
 - **质量项模型条件性**：质量项采用单调指数衰减形式 $\exp\{-\rho(Q - Q_{\text{anchor}})\}$。问题二对半合成数据 B6/B7 的分析显示，固定切片中相邻离散质量点的损失下降比例分别约为 74.6% 与 74.8%。因此所得最优解 $Q^*$ 是在该**单调指数质量项模型假定**下的条件最优解；该半合成数据结果不等同于对真实清洗过程的验证；
 - 理论退化锚点 $Q_{\text{anchor}} \equiv 1.0$；
-- 成本基线起点 $Q_0 \equiv Q_{\text{base}} = 0.584$（The Pile 原始抓取中位数质量，由此起算增量清洗成本）；
+- 成本基线起点 $Q_0 \equiv Q_{\text{base}} = 0.584$（依据附录 B.1 正文“可由附件 A 质量评分或合理假设给出”，标定为预训练语料主体开放网络抓取域 Common Crawl 与 C4 的合成中位数 $\text{Median}(Q_{\text{cc}} \cup Q_{\text{c4}}) \approx 0.584$，代表未经额外处理的公网爬虫原始语料质量基线，由此起算增量清洗成本）；
 - 附录 B.1 数据质量成本函数 $g(Q)$：
   1. 指数型：$g_{\text{exp}}(Q) = \gamma e^{\lambda Q}$，$\gamma = 10^7, \lambda = 6.0$；
   2. 幂函数型：$g_{\text{pow}}(Q) = \gamma Q^\lambda$，$\gamma = 5 \times 10^9, \lambda = 4.0$；

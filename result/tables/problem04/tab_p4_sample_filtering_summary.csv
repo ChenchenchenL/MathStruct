@@ -1,0 +1,10 @@
+Metric,Count,Notes
+C1_Total_Submissions,4576,Open LLM Leaderboard v2 总评测记录
+L1_Official_Epoch_Bridge,362,C2 官方桥接命中
+L2_Clean_Name_Match,23,规范化名称精确碰撞命中
+L3_Family_Params_Match,1305,家族与参数量误差<=5%规则校验命中
+License_Open_Pool,2683,明确允许学术研究或复现的许可证池
+Compute_Analyzable_Pool,1211,具备合法 C4 算力且开源的 SFA 主分析池
+Compute_Pretrained_Subgroup,109,SFA 规模弹性识别的纯净锚点
+Compute_Chat_Subgroup,759,对齐与后训练技术红利分析组
+Merges_Pool,1724,模型合并衍生版本，独立隔离分析

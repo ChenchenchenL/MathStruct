@@ -21,7 +21,8 @@ import matplotlib.pyplot as plt
 
 from p2_common import (
     save_figure_with_caption,
-    DIR_A, RES_P2, OUT_FIGS, OUT_TABS, SEED
+    DIR_A, RES_P2, OUT_FIGS, OUT_TABS, SEED,
+    load_p1_quality_table,          # P1→P2 接口函数
 )
 
 t0 = time.time()
@@ -29,7 +30,23 @@ print("=" * 70)
 print("EXP-20260923-P2-03: Mixture Response & Domain Complementarity / Substitution")
 print("=" * 70)
 
-# 1. Load Problem 1 RegMix Data
+# ──────────────────────────────────────────────────────────────────────────────
+# P1→P2 数据接口：从第一问导出结果读取质量锚点 Q0
+# 接口文件: result/tables/problem01/table_p1_domain_q_a1.csv
+# 由 src/problem01/exp05_final_closure.py 生成；
+# 对应 docs/problem-01/handoff.md §4 接口项 1。
+# ──────────────────────────────────────────────────────────────────────────────
+_p1_q = load_p1_quality_table()
+Q0_FROM_P1 = _p1_q['Q0']
+print(f"[P1→P2] Q0 锚点来源: {_p1_q['source']}")
+print(f"[P1→P2] Q0 (样本量加权均值) = {Q0_FROM_P1:.6f}  "
+      f"({'7域均值: ' + ', '.join(f'{k}={v:.3f}' for k, v in list(_p1_q['domain_q'].items())[:3]) + '...' if _p1_q['domain_q'] else '使用 fallback'})")
+
+
+# 1. 从附件 A RegMix 原始数据训练混合响应模型 f(p)
+# 注：Q0 锚点已由上方 P1→P2 接口从 table_p1_domain_q_a1.csv 读取（见 Q0_FROM_P1）。
+#     此处 regmix_tables 用于拟合 17域配比与验证损失之间的 HistGB 模型 f(p)，
+#     该模型对象未由第一问导出，因此仍从原始数据重新训练。
 BASE_REGMIX = os.path.join(DIR_A, "regmix_tables")
 DOMAINS17 = ["arxiv", "freelaw", "nih_exporter", "pubmed_central", "wikipedia_en",
              "dm_mathematics", "github", "philpapers", "stackexchange",

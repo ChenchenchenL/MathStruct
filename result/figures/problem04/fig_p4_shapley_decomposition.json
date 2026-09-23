@@ -1,0 +1,8 @@
+{
+  "experiment_id": "EXP-403",
+  "decomposition_method": "Counterfactual Shapley",
+  "chat_scale_share_pct": 83.25333313436862,
+  "chat_tech_share_pct": 16.746666848740464,
+  "base_scale_share_pct": 83.24982424729697,
+  "base_tech_share_pct": 16.75017573489542
+}

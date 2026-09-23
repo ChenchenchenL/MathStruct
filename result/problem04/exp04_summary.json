@@ -1,0 +1,17 @@
+{
+  "experiment_id": "EXP-404",
+  "forecast_start_date": "2025-03-13",
+  "annualized_compute_growth_g_C": 1.2651558697450236,
+  "historical_compute_2024_06": 3.02e+24,
+  "historical_compute_2025_03": 7.8e+24,
+  "scenario_1_12m_chat": 35.91,
+  "scenario_1_24m_chat": 35.32,
+  "scenario_2_12m_chat": 32.81,
+  "scenario_2_24m_chat": 29.32,
+  "scenario_3_12m_chat": 29.85,
+  "scenario_3_24m_chat": 23.96,
+  "dual_discrepancy_range": [
+    0.43,
+    10.64
+  ]
+}

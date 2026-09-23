@@ -1,0 +1,15 @@
+{
+  "experiment_id": "EXP-405",
+  "bootstrap_iterations": 1000,
+  "convergence_rate_pct": 100.0,
+  "oot_mae": 12.858322619346074,
+  "oot_coverage_95_pct": 66.66666666666666,
+  "scenario_1_24m_ci95": [
+    5.42,
+    81.67
+  ],
+  "scenario_3_24m_ci95": [
+    3.17,
+    72.58
+  ]
+}

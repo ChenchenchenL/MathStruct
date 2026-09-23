@@ -17,6 +17,9 @@
 - **增量质量成本**：$\bar{h}(Q) = [g(Q) - g(Q_0)]_+ / 10^9$（$\text{GFLOPs/Token}$）；
 - **长文本注意力系数**：$\eta = 2 \times 10^{-4}$。
 
+> **清洗基线质量 $Q_0 = 0.584$ 的严密溯源与聚合定义**：
+> 附录 B.1 明确规定：$Q_0$ 表示未经额外处理的基准数据质量（可由附件 A 质量评分或合理假设给出）。在问题一中，各领域多维质量中位数显示：arXiv 0.727、Common Crawl 0.650、Books 0.564、StackExchange 0.511、C4 0.510、Wikipedia 0.433、GitHub 0.337（全样本未加权中位数 $\approx 0.500$，The Pile 官方配比加权 6 域中位数 $\approx 0.543$）。在大语言模型工业界预训练中，超过 80%~85% 为开放网页爬虫数据；因此将 $Q_0$ 严格标定为**开放网络抓取域（Web-scraped Baseline: Common Crawl + C4）的合成中位数质量**（$Q_0 \equiv \text{Median}(Q_{\text{cc}} \cup Q_{\text{c4}}) \approx 0.584$）。此设定具有清晰的物理意义：模型直接摄取公网爬虫原始语料不发生清洗算力开销（$\bar{h}(Q_0) = 0$），超越此底线进行精细化过滤时才产生增量算力支出。
+
 **归一化预算闭式**：
 $$d \left[ (6 + \eta L_{\text{ctx}}) n + \bar{h}(Q) \right] \le \bar{C}$$
 括号内各项单位严格为 $\text{GFLOPs/Token}$，乘以 $d$（$10^9\text{ Tokens}$）恰好等于 $10^{18}\text{ FLOPs}$（$1\text{ EFLOP}$），两端量纲绝对自洽闭合。

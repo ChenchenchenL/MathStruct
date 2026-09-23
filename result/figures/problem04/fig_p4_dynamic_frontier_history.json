@@ -1,0 +1,8 @@
+{
+  "experiment_id": "EXP-403",
+  "model": "Dynamic SFA",
+  "sample_size": 868,
+  "scale_elasticity_b": 0.21735565689235012,
+  "v_chat": 0.20671392785116685,
+  "gamma_inefficiency": 0.8726739031549188
+}

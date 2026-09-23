@@ -1,0 +1,7 @@
+Target_Score_S,Extrapolation_Flag,Implied_Loss_Pretrained,Implied_Loss_Chat,Implied_Loss_6Dim_Synthesized,Loss_Discrepancy_1vs6,Score_95CI_Low,Score_95CI_High,Score_CI_Width
+40.0,Within_Domain,1.2098,1.6935,1.0425,0.1673,30.1,52.21,22.12
+48.0,Extrapolation,0.998,1.4817,0.8215,0.1765,35.39,62.54,27.16
+55.0,Extrapolation,0.8153,1.2991,0.6309,0.1844,40.25,70.94,30.7
+60.0,Extrapolation,0.682,1.1658,0.4919,0.1902,43.92,76.32,32.4
+70.0,Extrapolation,0.3945,0.8783,0.1919,0.2026,51.78,85.47,33.68
+80.0,Extrapolation,0.0438,0.5275,-0.1741,0.2178,61.16,92.44,31.28

@@ -73,6 +73,23 @@ def resample_changepoint(x: np.ndarray, y: np.ndarray, n_resamples: int = 1000, 
     The returned percentile ranges summarize sensitivity to reweighting the fixed
     budget grid. They are not population confidence intervals or significance
     tests because the scan points are not independent random observations.
+
+    **本函数不返回 p_value 字段。**
+    原因：50 个预算扫描点是确定性对数等距网格，并非从总体中独立随机抽取；
+    对确定性扫描曲线进行有放回重采样所得的区间仅是"扰动稳定性摘要"，
+    不能解释为总体置信区间，也不支持报告结构性转移的显著性 p 值。
+    （对应 docs/problem-03/handoff.md 第 115 行声明：
+      "当前检验也不支持报告结构性转移的显著性 p 值"）
+
+    Returns
+    -------
+    dict with keys:
+        'kappa_range_low'       : float  — 折点 κ 的 2.5 百分位扰动区间下界
+        'kappa_range_high'      : float  — 折点 κ 的 97.5 百分位扰动区间上界
+        'delta_slope_range_low' : float  — Δ斜率的 2.5 百分位扰动区间下界
+        'delta_slope_range_high': float  — Δ斜率的 97.5 百分位扰动区间上界
+        'successful_resamples'  : int    — 成功拟合的重采样次数
+    注：无 'p_value' 键。
     """
     rng = np.random.default_rng(seed)
     n_pts = len(x)

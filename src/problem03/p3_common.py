@@ -350,6 +350,34 @@ def solve_optimal_allocation_2d(C_bar: float, cost_type: str = 'exp',
     opt_n = float(np.exp(opt_u))
     opt_Q = float(np.clip(opt_Q, Q_MIN, Q_MAX))
     opt_d = float(compute_optimal_d(opt_n, opt_Q, C_bar, L_ctx, cost_type, normalized))
+
+    # ── D 界约束检查（M3-EQ01 形式约束 d ∈ [D_MIN, D_MAX]）──────────────────
+    # D 由预算等式解析消元：d* = C_bar / [(6+η·L_ctx)·n + h̄(Q)]，
+    # 无法直接在优化器 bounds 中约束。此处记录越界情况，由调用方决策处理。
+    # 注意：强行 clip 会使 d·cost_per_token ≠ C_bar，破坏预算等式，故不静默截断。
+    import warnings
+    d_unconstrained = opt_d
+    d_lo_violated = bool(opt_d < D_MIN)
+    d_hi_violated = bool(opt_d > D_MAX)
+    d_bound_active = d_lo_violated or d_hi_violated
+    if d_lo_violated:
+        warnings.warn(
+            f"[P3 D-bound] opt_d={opt_d:.4f} B-tokens < D_MIN={D_MIN} B-tokens "
+            f"at C_bar={C_bar:.4e} EFLOPs (cost_type='{cost_type}'). "
+            "D is determined analytically by the budget constraint; clipping is NOT applied "
+            "to preserve C_bar = d·cost_per_token. Record d_unconstrained for diagnostics.",
+            RuntimeWarning, stacklevel=2
+        )
+    elif d_hi_violated:
+        warnings.warn(
+            f"[P3 D-bound] opt_d={opt_d:.4f} B-tokens > D_MAX={D_MAX} B-tokens "
+            f"at C_bar={C_bar:.4e} EFLOPs (cost_type='{cost_type}'). "
+            "D is determined analytically by the budget constraint; clipping is NOT applied "
+            "to preserve C_bar = d·cost_per_token. Record d_unconstrained for diagnostics.",
+            RuntimeWarning, stacklevel=2
+        )
+    # ────────────────────────────────────────────────────────────────────────────
+
     final_loss = float(compute_loss(opt_n, opt_d, opt_Q, p_multiplier, custom_params))
 
     # Compute expenditure shares and KKT
@@ -367,10 +395,16 @@ def solve_optimal_allocation_2d(C_bar: float, cost_type: str = 'exp',
         'opt_Q': opt_Q,
         'opt_loss': final_loss,
         'token_to_param_ratio': opt_d / opt_n,
+        # D 界诊断字段（对应 model.md M3-EQ01 约束 d ∈ [D_MIN, D_MAX]）
+        'd_unconstrained': d_unconstrained,
+        'd_lo_violated': d_lo_violated,
+        'd_hi_violated': d_hi_violated,
+        'd_bound_active': d_bound_active,
         'shares': shares,
         'kkt': kkt,
         'de_verified': de_verified
     }
+
 
 # ==============================================================================
 # 6. Basic Self-Test

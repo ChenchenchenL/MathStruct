@@ -26,7 +26,7 @@ $$L(N, D, Q, p) = E + A N^{-\alpha} + B D^{-\beta} \cdot \exp\left\{ -\rho (Q - 
   - $D$：累计训练 Token 数量（单位：$10^9$ Tokens，即 Billion tokens，记为 $D_B$）；
   - $Q$：训练语料综合质量评分（$[0, 1]$ 连续变量，越高质量越好）；
   - $Q_{\text{anchor}}$：**理论退化锚点**（设为 $Q_{\text{anchor}} \equiv 1.0$，代表质量评分的参考上界）；
-  - $Q_{\text{base}}$：**经济成本底线**（设定为 $Q_{\text{base}} \equiv 0.584$，代表 The Pile 未清洗自然中位数质量，仅用于附录 B 数据清洗计算成本方程 $C_Q = D[g(Q) - g(Q_{\text{base}})]_+$，不偏移物理标度律退化常数）；
+  - $Q_{\text{base}}$：**经济成本底线**（依据附录 B 正文“可由附件 A 质量评分或合理假设给出”，设定为 $Q_{\text{base}} \equiv 0.584$，代表大模型预训练中占主导（>80%）的开放网络抓取域 Common Crawl 与 C4 的合成中位数质量 $\text{Median}(Q_{\text{cc}} \cup Q_{\text{c4}}) \approx 0.584$；仅用于附录 B 数据清洗计算成本方程 $C_Q = D[g(Q) - g(Q_{\text{base}})]_+$，不偏移物理标度律退化常数）；
   - $p \in \Delta^{16}$：17 维领域配比向量，满足非负性 $p_i \ge 0$ 与和为一约束 $\sum_{i=1}^{17} p_i = 1$；
   - $E$：不可约交叉熵下限（Irreducible Loss，理论熵界，单位：Nats，参数 $E \ge 0$）；
   - $A, \alpha$：模型参数项系数与标度幂指数（参数 $A > 0, \alpha > 0$）；

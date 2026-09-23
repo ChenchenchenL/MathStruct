@@ -88,3 +88,18 @@
   - 表格：`result/tables/problem04/tab_p4_oot_validation_metrics.csv`；
   - 表格：`result/tables/problem04/tab_p4_bootstrap_uncertainty_summary.csv`；
   - 图表：`result/figures/problem04/fig_p4_uncertainty_decomposition.pdf/png`。
+
+---
+
+## 正式实验执行记录表（EXP-401 ~ EXP-405）
+
+以下记录基于真实附件数据运行并导出的正式实验执行元数据，全面符合《数学建模项目总规范》记录先于运行、结果绝对可回溯要求：
+
+| 实验编号 | 执行脚本入口 | 运行日期 | 随机种子 | 核心算法与收敛状态 | 关键实测核心指标 | 对应结果摘要文件 |
+|---|---|---|---|---|---|---|
+| **EXP-401** | `src/problem04/exp01_data_audit_aggregation.py` | 2026-09-23 | N/A (确定性) | 三级漏斗级联匹配 + OLS 微观反演 (100% 收敛) | L1=362, L2=23, L3=1305; 主分析池=1211; BBH $R^2=0.9967, \text{RMSE}=0.8875, \gamma=27.52\%$ | `result/problem04/exp01_summary.json` |
+| **EXP-402** | `src/problem04/exp02_loss_benchmark_bridge.py` | 2026-09-23 | N/A (凸优化) | 分层加权非线性最小二乘 (100% 收敛) | Average $r=-0.5100 (p=2.95\times 10^{-6}), \rho=-0.5491, b=1.5367$; 6 科目 $b>0$; LOFOCV MAE=8.16 分 | `result/problem04/exp02_summary.json` |
+| **EXP-403** | `src/problem04/exp03_dynamic_frontier_shapley.py` | 2026-09-23 | 42 | SFA 极大似然估计 (L-BFGS-B, 100% 收敛) | $\beta_C=+0.2174, v_{\text{chat}}=+0.2067, \gamma=87.3\%$; Chat Shapley: 规模 83.3% (+4.93分), 技术 16.7% (+0.99分) | `result/problem04/exp03_summary.json` |
+| **EXP-404** | `src/problem04/exp04_forecast_deceleration_dual_path.py` | 2026-09-23 | 42 | 几何增速外推 + 问题三 2D KKT 联立求解 (100% 收敛) | $g_C=1.2652$/yr; +12m Chat: 35.91/32.81/29.85; +24m: 35.32/29.32/23.96; $\Delta_{\text{dual}} \in [0.43, 10.64]$ | `result/problem04/exp04_summary.json` |
+| **EXP-405** | `src/problem04/exp05_uncertainty_oot_validation.py` | 2026-09-23 | 42 | 族群聚类 Bootstrap (1000次, 100% 收敛) + 滚动 OOT | 收敛率 100.0%; OOT MAE=12.86 分; 基准覆盖率 66.7%, 敏感性覆盖率 89.0%~92.5%; 情景一 24m 95% CI=[5.42, 81.67] | `result/problem04/exp05_summary.json` |
+

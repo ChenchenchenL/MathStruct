@@ -1,0 +1,3 @@
+Model_Regime,Time_Window,Initial_Compute_FLOP,Terminal_Compute_FLOP,Initial_Frontier_Score,Terminal_Frontier_Score,Total_Improvement_Points,Scale_Expansion_Points,Scale_Contribution_Share_Pct,NonScale_Tech_Points,NonScale_Tech_Share_Pct,Additivity_Residual
+Chat_Finetuned,2024-06 to 2025-03,3.02e+24,7.80e+24,36.68,42.6,5.92,4.93,83.3,0.99,16.7,0.0
+Pretrained_Base,2024-06 to 2025-03,3.02e+24,7.80e+24,32.03,37.64,5.62,4.67,83.2,0.94,16.8,0.0

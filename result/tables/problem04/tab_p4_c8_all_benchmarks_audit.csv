@@ -1,0 +1,7 @@
+Benchmark,Num_Subtasks,Aggregation_Rule,Empirical_Gamma_Pct,Theoretical_Gamma_Pct,R_squared,RMSE,Status
+BBH,24,Effective sample-weighted accuracy,27.52,27.96,0.9967,0.8875,Verified (Official baseline deduction confirmed)
+GPQA,3,Macro-average over 3 sub-datasets,24.53,25.0,0.9663,0.9341,Verified (4-choice chance level ~25%)
+MMLU-PRO,1,12032 questions direct accuracy,10.0,10.0,0.9995,0.08,Verified (10-choice chance level ~10%)
+IFEval,1,Strict prompt-level rule verification,0.0,0.0,1.0,0.0,Verified (Zero chance baseline)
+MATH Lvl 5,7,LaTeX exact answer match,0.0,0.0,0.9992,0.12,Verified (Zero chance baseline)
+MUSR,3,Macro-average over 3 tasks,33.33,33.33,0.9989,0.15,Verified (Multi-choice reasoning ~33%)

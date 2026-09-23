@@ -1,0 +1,18 @@
+{
+  "experiment_id": "EXP-403",
+  "sample_size": 868,
+  "sfa_scale_elasticity_b": 0.21735565689235012,
+  "sfa_chat_lift_v": 0.20671392785116685,
+  "sfa_sigma_e": 0.3086737583688428,
+  "sfa_sigma_d": 0.8081035065119996,
+  "sfa_gamma_inefficiency": 0.8726739031549188,
+  "sfa_converged": true,
+  "shapley_chat_total_gain": 5.9203437906556715,
+  "shapley_chat_scale_points": 4.928883539567007,
+  "shapley_chat_scale_share_pct": 83.25333313436862,
+  "shapley_chat_tech_points": 0.9914602510886645,
+  "shapley_chat_tech_share_pct": 16.746666848740464,
+  "shapley_base_scale_share_pct": 83.24982424729697,
+  "shapley_base_tech_share_pct": 16.75017573489542,
+  "refutes_t19": true
+}
