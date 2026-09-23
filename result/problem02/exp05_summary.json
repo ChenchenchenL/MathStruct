@@ -21,7 +21,7 @@
       "Calibrated_RMSE": 0.4185,
       "Calibrated_R2": 0.3116,
       "Spearman_rho": 0.7881,
-      "Verdict": "Verified (Rank rho=0.7881 preserved; R2=0.3116 reflects architecture divergence)"
+      "Verdict": "Rank ordering retained after intercept calibration; fit dispersion remains"
     },
     {
       "Dataset": "B3 (Interpolated)",
@@ -33,7 +33,7 @@
       "Calibrated_RMSE": 0.0038,
       "Calibrated_R2": 1.0,
       "Spearman_rho": 1.0,
-      "Verdict": "Verified (Flawless Intra-Trajectory Continuity Match)"
+      "Verdict": "Intra-trajectory continuity comparison"
     },
     {
       "Dataset": "B4 (Modern LLMs)",
@@ -45,7 +45,7 @@
       "Calibrated_RMSE": 0.1927,
       "Calibrated_R2": 0.8286,
       "Spearman_rho": 0.983,
-      "Verdict": "Verified (Cross-Architecture Law Invariance)"
+      "Verdict": "Cross-family comparison after intercept calibration"
     },
     {
       "Dataset": "B5 (Literature)",
@@ -57,7 +57,7 @@
       "Calibrated_RMSE": 0.1997,
       "Calibrated_R2": 0.7249,
       "Spearman_rho": 0.9588,
-      "Verdict": "Verified (Consistent with Historical Benchmarks)"
+      "Verdict": "Comparison with published scaling benchmarks"
     },
     {
       "Dataset": "B10 (Large Extrap)",
@@ -69,7 +69,7 @@
       "Calibrated_RMSE": 0.0009,
       "Calibrated_R2": 1.0,
       "Spearman_rho": 1.0,
-      "Verdict": "Verified (Asymptotic Extrapolation Stability to 10T)"
+      "Verdict": "Comparison with an extrapolation baseline"
     }
   ],
   "b9_industrial_validation": {
@@ -83,13 +83,13 @@
       0.0,
       36000.0
     ],
-    "verdict": "Verified (Industrial Compute Scaling Equivalence C=6ND confirmed across 121 compute-reported models)"
+    "verdict": "Observed FLOPs-to-6ND ratio across 121 compute-reported models"
   },
-  "b2_cerebras_divergence_analysis": {
+  "b2_cerebras_fit_limitations": {
     "calibrated_r2": 0.3116,
     "calibrated_rmse": 0.4185,
     "spearman_rho": 0.7881,
-    "architectural_divergence_rationale": "Cerebras-GPT uses pure decoder architecture with different warmup, hyperparameter scaling, and step schedules from Pythia, leading to wider point variance across training steps (R2=0.3116), yet preserving robust monotonic rank order (rho=0.7881)."
+    "interpretation": "Point predictions remain dispersed after intercept calibration (R2=0.3116), while rank ordering remains associated (rho=0.7881). Architecture, schedule, and data differences are possible contributors, but this experiment does not identify their causal effects."
   },
   "runtime_sec": 0.03
 }

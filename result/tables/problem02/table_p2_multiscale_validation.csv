@@ -1,6 +1,6 @@
 ﻿Dataset,Description,N_samples,Nature,Uncalibrated_RMSE,Intercept_Shift_dE,Calibrated_RMSE,Calibrated_R2,Spearman_rho,Verdict
-B2 (Cerebras),Out-of-Family Semi-Synthetic Training Log (1029 steps),1029,Out-of-Family Semi-Synthetic,1.2431,1.042,0.4185,0.3116,0.7881,Verified (Rank rho=0.7881 preserved; R2=0.3116 reflects architecture divergence)
-B3 (Interpolated),Dense Trajectory Interpolation (8 Models x 500 Steps),4000,Consistency Check (Intra-Trajectory Interpolation),0.0038,0.0,0.0038,1.0,1.0,Verified (Flawless Intra-Trajectory Continuity Match)
-B4 (Modern LLMs),"12 Modern Open LLM Families (LLaMA, Qwen2, Gemma, Mistral, etc.)",57,Real Converged Points,0.2927,0.2035,0.1927,0.8286,0.983,Verified (Cross-Architecture Law Invariance)
-B5 (Literature),"Academic Literature Scaling Benchmarks (Kaplan, Chinchilla, PaLM)",44,Published Literature,0.1976,0.0558,0.1997,0.7249,0.9588,Verified (Consistent with Historical Benchmarks)
-B10 (Large Extrap),"Ultra-Large Models (100B - 10,000B Parameters)",128,Extrapolation Baseline,0.0011,-0.0004,0.0009,1.0,1.0,Verified (Asymptotic Extrapolation Stability to 10T)
+B2 (Cerebras),Out-of-Family Semi-Synthetic Training Log (1029 steps),1029,Out-of-Family Semi-Synthetic,1.2431,1.042,0.4185,0.3116,0.7881,Rank ordering retained after intercept calibration; fit dispersion remains
+B3 (Interpolated),Dense Trajectory Interpolation (8 Models x 500 Steps),4000,Consistency Check (Intra-Trajectory Interpolation),0.0038,0.0,0.0038,1.0,1.0,Intra-trajectory continuity comparison
+B4 (Modern LLMs),"12 Modern Open LLM Families (LLaMA, Qwen2, Gemma, Mistral, etc.)",57,Real Converged Points,0.2927,0.2035,0.1927,0.8286,0.983,Cross-family comparison after intercept calibration
+B5 (Literature),"Academic Literature Scaling Benchmarks (Kaplan, Chinchilla, PaLM)",44,Published Literature,0.1976,0.0558,0.1997,0.7249,0.9588,Comparison with published scaling benchmarks
+B10 (Large Extrap),"Ultra-Large Models (100B - 10,000B Parameters)",128,Extrapolation Baseline,0.0011,-0.0004,0.0009,1.0,1.0,Comparison with an extrapolation baseline

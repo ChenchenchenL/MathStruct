@@ -5,10 +5,10 @@
   "source_data": "Attachment A RegMix tables (train_mixture_1m.csv, test_mixture_1B.csv, test_pile_loss_*.csv)",
   "script": "src/problem02/exp03_mixture_transfer.py",
   "code_version": "v1.1",
-  "format": "pdf/png",
-  "dpi": 300,
-  "width_mm": 280,
-  "height_mm": 115,
+  "format": "pdf/svg/png",
+  "dpi": 600,
+  "width_mm": 317.5,
+  "height_mm": 132.1,
   "title_in_figure": false,
   "caption": "See companion fig_p2_domain_interactions.pdf.caption.md",
   "panels": [
@@ -18,7 +18,7 @@
       "x_axis": "Model & Data Scale (Attachment A Validation Sets)",
       "y_axis_left": "Coefficient of Variation CV (%)",
       "y_axis_right": "Loss Standard Deviation (Nats)",
-      "observation": "Recipe sensitivity CV shrinks from 5.27% (1M) to 2.35% (1B), shrinkage ratio 0.4466; MSM exact non-linear tau* = 0.8348, adopting tau* = 0.85"
+      "observation": "Recipe-sensitivity CV is 5.27% (1M), 5.74% (60M), and 2.35% (1B); the 1B/1M ratio is 0.4466"
     },
     {
       "panel": "(b) Right",

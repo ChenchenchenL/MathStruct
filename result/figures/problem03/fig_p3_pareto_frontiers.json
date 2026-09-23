@@ -1,0 +1,35 @@
+{
+  "figure_id": "fig_p3_pareto_frontiers",
+  "experiment_id": "EXP-301",
+  "date": "2026-09-23",
+  "budget_tiers": [
+    "10^19",
+    "10^22",
+    "10^24"
+  ],
+  "cost_functions": [
+    "exp",
+    "pow",
+    "log"
+  ],
+  "optimal_points": {
+    "low_exp": {
+      "N_B": 0.2021,
+      "D_B": 6.2755,
+      "Q": 0.6907,
+      "Loss": 3.2105
+    },
+    "mid_exp": {
+      "N_B": 5.6116,
+      "D_B": 252.0822,
+      "Q": 1.0,
+      "Loss": 2.1506
+    },
+    "high_exp": {
+      "N_B": 40.7208,
+      "D_B": 3777.7812,
+      "Q": 1.0,
+      "Loss": 1.9139
+    }
+  }
+}

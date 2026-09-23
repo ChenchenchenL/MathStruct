@@ -58,9 +58,9 @@ r_p_b8, _ = pearsonr(b8['Q_score'], b8['val_loss'])
 r_s_b8, _ = spearmanr(b8['Q_score'], b8['val_loss'])
 
 print(f"\n[3] Correlation Diagnosis (Q_score vs val_loss):")
-print(f"    B6 (360 pts): Pearson r = {r_p_b6:.4f}, Spearman rho = {r_s_b6:.4f}  (Monotonically Decreasing)")
-print(f"    B7 (450 pts): Pearson r = {r_p_b7:.4f}, Spearman rho = {r_s_b7:.4f}  (Monotonically Decreasing)")
-print(f"    B8 (1704 pts): Pearson r = {r_p_b8:.4f}, Spearman rho = {r_s_b8:.4f}  (ANOMALOUS POSITIVE!)")
+print(f"    B6 (360 pts): Pearson r = {r_p_b6:.4f}, Spearman rho = {r_s_b6:.4f}  (Negative association)")
+print(f"    B7 (450 pts): Pearson r = {r_p_b7:.4f}, Spearman rho = {r_s_b7:.4f}  (Negative association)")
+print(f"    B8 (1704 pts): Pearson r = {r_p_b8:.4f}, Spearman rho = {r_s_b8:.4f}  (Opposite direction)")
 
 # Monotonicity check on slices: for each (N, D), is dL/dQ < 0?
 def check_monotonic_pct(df):
@@ -76,18 +76,18 @@ mono_b6 = check_monotonic_pct(b6)
 mono_b7 = check_monotonic_pct(b7)
 mono_b8 = check_monotonic_pct(b8)
 print(f"    Slice Monotonicity (% of steps where Loss decreases as Q increases):")
-print(f"    B6: {mono_b6:.1f}% | B7: {mono_b7:.1f}% | B8: {mono_b8:.1f}% (Inverted!)")
+print(f"    B6: {mono_b6:.1f}% | B7: {mono_b7:.1f}% | B8: {mono_b8:.1f}% (B8 direction differs)")
 
 diag_table = pd.DataFrame([
-    {'Dataset': 'B6 (Baseline)', 'N_samples': len(b6), 'Pearson_r': round(r_p_b6, 4), 'Spearman_rho': round(r_s_b6, 4), 'Monotonic_Decr_Pct': round(mono_b6, 1), 'Verdict': 'Valid (Adhere to Physics)', 'Role': 'Primary Quality Fitting'},
-    {'Dataset': 'B7 (Expanded)', 'N_samples': len(b7), 'Pearson_r': round(r_p_b7, 4), 'Spearman_rho': round(r_s_b7, 4), 'Monotonic_Decr_Pct': round(mono_b7, 1), 'Verdict': 'Valid (Adhere to Physics)', 'Role': 'Primary Quality Fitting'},
-    {'Dataset': 'B8 (Large/Calib)', 'N_samples': len(b8), 'Pearson_r': round(r_p_b8, 4), 'Spearman_rho': round(r_s_b8, 4), 'Monotonic_Decr_Pct': round(mono_b8, 1), 'Verdict': 'Opposite observed direction', 'Role': 'Diagnostic only; excluded from primary fit'}
+    {'Dataset': 'B6 (Baseline)', 'N_samples': len(b6), 'Pearson_r': round(r_p_b6, 4), 'Spearman_rho': round(r_s_b6, 4), 'Monotonic_Decr_Pct': round(mono_b6, 1), 'Verdict': 'Negative association; retained', 'Role': 'Primary quality fitting'},
+    {'Dataset': 'B7 (Expanded)', 'N_samples': len(b7), 'Pearson_r': round(r_p_b7, 4), 'Spearman_rho': round(r_s_b7, 4), 'Monotonic_Decr_Pct': round(mono_b7, 1), 'Verdict': 'Negative association; retained', 'Role': 'Primary quality fitting'},
+    {'Dataset': 'B8 (Large/Calib)', 'N_samples': len(b8), 'Pearson_r': round(r_p_b8, 4), 'Spearman_rho': round(r_s_b8, 4), 'Monotonic_Decr_Pct': round(mono_b8, 1), 'Verdict': 'Direction differs from B6/B7', 'Role': 'Diagnostic only; excluded from primary fit'}
 ])
 diag_table_path = os.path.join(OUT_TABS, "table_p2_b8_anomaly_diagnosis.csv")
 diag_table.to_csv(diag_table_path, index=False, encoding="utf-8-sig")
 
 # 3. Model Fitting on B7 (Expanded Quality Data, 450 points)
-# Model 1: Exponential (Q0 = 1.0, Perfect Teacher Degeneration)
+# Model 1: Exponential with the reference anchor Q0 = 1.0
 def model1_exp_q1(X, rho):
     N, D, Q = X
     return E_b + A_b * (N ** (-a_b)) + B_b * (D ** (-b_b)) * np.exp(-rho * (Q - 1.0))
@@ -285,7 +285,8 @@ ax1.set_xlabel("Data Quality Score Q", labelpad=6)
 ax1.set_ylabel("Validation Cross-Entropy Loss (Nats)", labelpad=6)
 ax1.set_xlim(0.05, 1.05)
 ax1.set_ylim(1.85, 4.35)
-ax1.legend(title="Config Slice (N, D)", loc="upper right", framealpha=0.92, fontsize=8.5, ncol=2)
+ax1.legend(title="Config Slice (N, D)", loc="upper right", framealpha=0.92,
+           fontsize=8.5, ncol=2, handletextpad=1.4, borderpad=0.8, labelspacing=0.6)
 
 # Panel 2: B8 direction diagnosis against the corresponding B7 slice
 slice_test_N, slice_test_D = 0.7, 10
@@ -293,15 +294,18 @@ sub_b7 = b7[(np.abs(b7['N_params_B'] - slice_test_N) < 0.05) & (b7['D_tokens_B']
 sub_b8 = b8[(np.abs(b8['N_params_B'] - slice_test_N) < 0.05) & (b8['D_tokens_B'] == slice_test_D)].sort_values('Q_score')
 
 ax2.plot(sub_b7['Q_score'], sub_b7['val_loss'], 'g-o', linewidth=2.0, markersize=6,
-         label=f'B7 reference slice (N={slice_test_N}B, D={slice_test_D}B)')
+         label='B7 reference slice')
 ax2.plot(sub_b8['Q_score'], sub_b8['val_loss'], 'r--s', linewidth=2.0, markersize=6,
-         label=f'B8 observed slice (N={slice_test_N}B, D={slice_test_D}B)')
+         label='B8 diagnostic slice')
 
 ax2.set_xlabel("Data Quality Score Q", labelpad=6)
 ax2.set_ylabel("Validation Cross-Entropy Loss (Nats)", labelpad=6)
 ax2.set_xlim(0.0, 1.05)
 ax2.set_ylim(0.9, 3.80)
-ax2.legend(loc="lower right", framealpha=0.92, fontsize=8.5)
+ax2.grid(False)
+ax2.yaxis.grid(True, alpha=0.3, linestyle='--')
+ax2.legend(loc="lower right", framealpha=0.92, fontsize=8.5,
+           handletextpad=1.4, borderpad=0.8, labelspacing=0.7)
 
 fig.tight_layout()
 
@@ -333,14 +337,14 @@ fig2_meta = {
             "description": "Validation Loss vs Quality Score Q across 6 scale slices in B7",
             "x_axis": "Data Quality Score Q",
             "y_axis": "Validation Cross-Entropy Loss (Nats)",
-            "observation": "Strict smooth monotonic decrease conforming to Effective Token Volume Hypothesis (rho = 0.6646)"
+            "observation": "Negative aggregate association; adjacent-Q loss decreases in 74.6% of B6 steps and 74.8% of B7 steps"
         },
         {
             "panel": "(b) Right",
             "description": "B8 Anomaly Diagnosis vs Standard B7 Trajectory Slice",
             "x_axis": "Data Quality Score Q",
             "y_axis": "Validation Cross-Entropy Loss (Nats)",
-            "observation": "B8 exhibits anomalous positive slope (r=+0.9132) violating physical monotonicity; isolated by P2-02"
+            "observation": "B8 has positive aggregate association; its direction differs from B6/B7 and it is reserved for diagnosis"
         }
     ],
     "estimated_parameter": {

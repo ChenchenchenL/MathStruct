@@ -16,7 +16,7 @@
 - **输出**：
   - 数据表：`result/tables/problem02/table_p2_scaling_parameters.csv`
   - 汇总 JSON：`result/problem02/exp01_summary.json`
-  - 图表：`result/figures/problem02/fig_p2_classical_scaling.pdf`（及 `.png`、`.caption.md`、`.json`）
+  - 图表：`result/figures/problem02/fig_p2_classical_scaling.pdf`（及 `.svg`、`.caption.md`、`.json`）
 - **指标**：
   - **全数据拟合（n=1176）**：
     - $E = 1.6898 \pm 0.0001$ Nats
@@ -28,7 +28,7 @@
   - **成熟期截断对比（P2-04）**：
     - $D \ge 1.0$B（n=1152）：$E = 1.6900, A = 0.3540, \alpha = 0.3400, B = 1.2403, \beta = 0.2800, R^2 = 1.00000$
     - $D \ge 5.0$B（n=1128）：$E = 1.6901, A = 0.3540, \alpha = 0.3400, B = 1.2403, \beta = 0.2801, R^2 = 1.00000$
-    - 结论：全数据与截断数据参数漂移小于 $0.01\%$，Pythia 训练日志在全区间保持完美的渐近幂律形态。
+    - 结论：全数据与截断数据参数漂移小于 $0.01\%$，在本数据的显示精度下拟合结果一致。
   - **整条模型轨迹留一交叉验证（LOMOCV，P2-03）**：
     - 8 折总体留出评估：$\text{RMSE} = 0.00015$ Nats, $R^2 = 1.00000$
     - 各规格留出一览：70M (0.00022), 160M (0.00018), 410M (0.00014), 1.0B (0.00015), 1.4B (0.00013), 2.8B (0.00011), 6.9B (0.00014), 12B (0.00010)
@@ -42,7 +42,7 @@
 - **结论**：
   1. 真实基准参数准确拟合，确认不可约损失底噪 $E \approx 1.6898$，模型幂指数 $\alpha \approx 0.3400$，数据幂指数 $\beta \approx 0.2799$；
   2. 严格留一验证与极窄置信区间证实经典标度律的参数稳健性；
-  3. 实测数据彻底排除了赛题数据说明第 144 行植入的第 T11 条诱捕毒丸（“$E=3.52, \alpha=0.081, \beta=0.075, R^2=0.87$”），排除了伪造指纹。
+  3. 后续分析只采用本实验由 B1 原始记录拟合得到的参数，不引用与正式实验产物不一致的外部预设数值。
 
 ---
 
@@ -58,13 +58,13 @@
 - **输出**：
   - 数据表：`result/tables/problem02/table_p2_quality_models.csv`、`result/tables/problem02/table_p2_b8_anomaly_diagnosis.csv`
   - 汇总 JSON：`result/problem02/exp02_summary.json`
-  - 图表：`result/figures/problem02/fig_p2_quality_effect.pdf`（及 `.png`、`.caption.md`、`.json`）
+  - 图表：`result/figures/problem02/fig_p2_quality_effect.pdf`（及 `.svg`、`.caption.md`、`.json`）
 - **指标**：
-  - **B8 严重异常诊断与学术防伪排查**：
-    - B6（360 点）：Pearson $r = -0.3317$, Spearman $\rho = -0.3239$, 切片单调递减率 $74.6\%$（合理单调）
-    - B7（450 点）：Pearson $r = -0.3052$, Spearman $\rho = -0.2990$, 切片单调递减率 $74.8\%$（合理单调）
-    - B8（1704 点）：Pearson $r = +0.9132$, Spearman $\rho = +0.9208$, 切片单调递减率仅 $0.1\%$（**反常正相关！**）
-    - 诊断排查结论：B8 出现“质量越高损失越大”的反常特征，与赛题第 T12 条毒丸断言完全吻合；执行规则 P2-02 坚决隔离 B8。
+  - **B6–B8 质量方向诊断**：
+    - B6（360 点）：Pearson $r=-0.3317$，Spearman $\rho=-0.3239$，相邻质量点下降比例 74.6%
+    - B7（450 点）：Pearson $r=-0.3052$，Spearman $\rho=-0.2990$，相邻质量点下降比例 74.8%
+    - B8（1,704 点）：Pearson $r=+0.9132$，Spearman $\rho=+0.9208$，相邻质量点下降比例 0.1%
+    - 诊断结论：B8 与 B6/B7 的总体方向不同，仅作诊断，不参与主拟合；当前证据不能确定其具体成因。
   - **模型选型与参数估计（在 B7 上，n=450）**：
     - **主模型（Model 1，指数型，退化锚点 $Q_{\text{anchor}}=1.0$）**：
       - $\rho = 0.6646 \pm 0.0135$
@@ -73,7 +73,7 @@
       - $\text{AIC} = -2082.21$, $\text{BIC} = -2078.10$
     - **消融模型（Model 1b，指数型，错设 $Q_0=0.584$ 且冻结 B1 底座）**：
       - $\rho = 1.1366$, $R^2 = 0.78273$, $\text{RMSE} = 0.15878$ Nats, $\text{MAE} = 0.13957$ Nats, $\text{AIC} = -1654.22$
-      - 结论：强行把成本底线 0.584 混淆为物理退化锚点，会导致拟合优度断崖式下跌，证明了 $Q_{\text{anchor}}=1.0$ 的必要性。
+      - 结论：将成本底线 0.584 作为退化锚点时拟合优度明显下降，因此主模型保留 $Q_{\text{anchor}}=1.0$。
     - **备选模型（Model 2，幂律型，$(Q/Q_0)^{-\gamma}$）**：
       - $\gamma = 0.3012$, $R^2 = 0.88667$, $\text{RMSE} = 0.11468$ Nats, $\text{AIC} = -1947.08$, $\text{BIC} = -1942.97$
     - **无约束联合拟合（Model 3，6 参数自由估计）**：
@@ -83,7 +83,7 @@
 - **结论**：
   1. 指数型在 AIC 与 BIC 上显著优于幂律模型（AIC 领先 135.13），被正式确定为主模型；
   2. 估计得到质量效率参数 $\rho = 0.6646$；
-  3. 彻底隔离 B8 诱捕数据，确保后续技术边际替代率（MRTS）推导的物理可靠性。
+  3. B8 作为方向诊断集保留，不参与后续 MRTS 参数估计。
 
 ---
 
@@ -99,11 +99,11 @@
 - **输出**：
   - 数据表：`result/tables/problem02/table_p2_domain_interactions.csv`、`result/tables/problem02/table_p2_tau_sensitivity.csv`、`result/tables/problem02/table_p2_hessian_robustness.csv`
   - 汇总 JSON：`result/problem02/exp03_summary.json`
-  - 图表：`result/figures/problem02/fig_p2_domain_interactions.pdf`（及 `.png`、`.caption.md`、`.json`）
+  - 图表：`result/figures/problem02/fig_p2_domain_interactions.pdf`（及 `.svg`、`.caption.md`、`.json`）
 - **指标**：
   - **配比基线拟合**：
     - 问题一基准配方 $p_0$ 下的 1M 预测损失 $f(p_0) = 4.8447$ Nats
-    - 退化性验证：在 $p_0$ 处 $R(p_0) = 1.000000$（相对偏差严格为 0）
+    - 退化性检查：按定义在 $p_0$ 处 $R(p_0)=1$（数值相对偏差为 0）
   - **跨尺度方差收缩比与 MSM 参数标定（P2-05）**：
     - 1M 检验集（256组）：$\mu = 5.2823, \sigma = 0.2782 \implies \text{CV} = 5.27\%$
     - 60M 检验集（256组）：$\mu = 3.8229, \sigma = 0.2193 \implies \text{CV} = 5.74\%$
@@ -129,8 +129,8 @@
 - **耗时**：12.80 s
 - **结论**：
   1. 成功将问题一配比响应模型嵌入广义标度律，且保证在基线配比下严格退化；
-  2. 突破了参数 $\tau$ 不可识别的难题，通过 MSM 矩匹配赋予其扎实的多尺度实证闭环；
-  3. 揭示了专业科学文献（arxiv、uspto）与通识技术社区（stackexchange、pile_cc）之间的强协同机制。
+  2. 通过 1B 检验集的 MSM 矩匹配得到 $\tau^*=0.8348$，并采用近似值 0.85；该值属于当前工作模型下的经验校准；
+  3. 给出领域对的二阶曲率排序，符号解释限于当前配比模型及扰动邻域。
 
 ---
 
@@ -145,10 +145,10 @@
 - **输出**：
   - 数据表：`result/tables/problem02/table_p2_substitution_01.csv`、`result/tables/problem02/table_p2_marginal_roi.csv`
   - 汇总 JSON：`result/problem02/exp04_summary.json`
-  - 图表：`result/figures/problem02/fig_p2_substitution_ceiling.pdf`（及 `.png`、`.caption.md`、`.json`）
+  - 图表：`result/figures/problem02/fig_p2_substitution_ceiling.pdf`（及 `.svg`、`.caption.md`、`.json`）
 - **指标**：
   - **无量纲弹性全网格校验（112 组配置）**：
-    - $\epsilon_N < 0, \epsilon_D < 0, \epsilon_Q < 0$ 在定义域内**严格恒成立**！直接否定 T12 毒丸断言。
+    - 在当前模型的正参数与正变量定义域内，解析式与 112 组数值配置均给出 $\epsilon_N<0,\epsilon_D<0,\epsilon_Q<0$。
     - 典型基准配置（$N=1.04$B, $D=300$B, $Q=0.7$）：
       - 验证损失：$L = 2.3459$ Nats，可约损失：$L - E = 0.6561$ Nats
       - 总损失弹性：$\epsilon_N = -0.0506, \epsilon_D = -0.0366, \epsilon_Q = -0.0608$
@@ -173,12 +173,12 @@
     - 70.0000B（70B档）：可节省参数 32.4861B (46.4%)；等价于需增加参数 +84.6540B (120.9%)
   - **标度律天花板饱和（Scaling Ceiling Saturation）奇点证明**：
     - 临界规模解析解：$N_{\text{crit}} = \left[ \frac{A}{T(1 - e^{-0.1 \rho})} \right]^{1/\alpha}$
-    - 在数据受限场景（$D=10$B）下，$N_{\text{crit}} \approx 296.7$B；当 $N \ge N_{\text{crit}}$ 时，方程无有限实数解，进入**奇异饱和区**！投入无穷大参数也无法弥补质量缺陷，严密证明了高质量数据的不可替代性。
+    - 在数据受限场景（$D=10$B）下，$N_{\text{crit}}\approx296.7$B；当 $N\ge N_{\text{crit}}$ 时，当前等效扩容方程无有限实数解。该结论是给定模型、固定 $D,p$ 与质量增量 0.1 下的边界结果。
 - **耗时**：1.57 s
 - **结论**：
   1. 严格使用附录 B.1 真实成本函数解决了“算一笔账”设问，指出了当前主流配置下买教材划算但存在质量翻转门槛 $Q^*$；
   2. 质量提升 0.1 可为大模型带来 15%~46% 的等效算力/参数缩减；
-  3. 严格解析证明了标度律天花板饱和奇点，为赛题提供了强大的理论深度。
+  3. 给出等效扩容方程的有限可解条件与临界规模，可作为问题三约束检查。
 
 ---
 
@@ -193,11 +193,11 @@
 - **输出**：
   - 数据表：`result/tables/problem02/table_p2_multiscale_validation.csv`
   - 汇总 JSON：`result/problem02/exp05_summary.json`
-  - 图表：`result/figures/problem02/fig_p2_multiscale_validation.pdf`（及 `.png`、`.caption.md`、`.json`）
+  - 图表：`result/figures/problem02/fig_p2_multiscale_validation.pdf`（及 `.svg`、`.caption.md`、`.json`）
 - **指标**：
   - **B3 Pythia 密集轨迹插值（4,000点，8条轨迹x500步）**：
     - 性质：**训练轨迹内插一致性检验（Intra-trajectory interpolation）**
-    - $\text{RMSE} = 0.0038$ Nats, $R^2 = 1.0000$, Spearman $\rho = 1.0000$（完美连续插值重合）
+    - $\text{RMSE}=0.0038$ Nats，$R^2=1.0000$，Spearman $\rho=1.0000$；这些指标针对插值生成的轨迹一致性，不代表独立外推性能。
   - **B4 现代开源大模型家族（57点，12族，LLaMA/Qwen2/Gemma/Mistral/Phi等）**：
     - 原始无校准 $\text{RMSE} = 0.2927$ Nats
     - 截距校准项 $\Delta E = +0.2035$ Nats
@@ -208,13 +208,22 @@
     - 校准后 $\text{RMSE} = 0.1997$ Nats, **$R^2 = 0.7249$**, **Spearman $\rho = 0.9588$**
   - **B2 Cerebras 族外半合成日志（1,029点）**：
     - 截距校准后 $\text{RMSE} = 0.4185$ Nats, **$R^2 = 0.3116$**, Spearman $\rho = 0.7881$
-    - 架构偏离机理：Cerebras 采用标准纯 Decoder 结构，且学习率衰减周期与 Pythia 存在微观差异，产生步间方差，$R^2 = 0.3116$ 忠实反映了微观偏离，但宏观秩单调性维持（$\rho = 0.7881$）。
+    - B2 的 $R^2=0.3116$ 表明点预测离散较大，Spearman $\rho=0.7881$ 表明排序仍有一致性；架构、训练调度或数据构成差异是可能原因，但本实验不能识别各因素的因果贡献。
   - **B9 工业界 Frontier 模型真实算力校验（132 组模型，121 组包含 FLOPs）**：
-    - 实测 FLOPs 与 $6ND$ 理论算力比值中位数为 **0.99998**，证实工业级前沿大模型严格遵循 $C \approx 6ND$。
+    - 有 FLOPs 记录的样本中，实测 FLOPs 与 $6ND$ 理论算力比值中位数为 **0.99998**，说明该近似与当前 B9 记录一致。
   - **B10 超大规模模型外推基准（128点，100B 至 10,000B 参数）**：
     - 原始无校准 $\text{RMSE} = 0.0011$ Nats
-    - 校准后 $\text{RMSE} = 0.0009$ Nats, **$R^2 = 1.00000$**, **Spearman $\rho = 1.0000$**（超远距外推完全平滑收敛至理论不可约熵界 $E$）
+    - 校准后 $\text{RMSE}=0.0009$ Nats，**$R^2=1.00000$**，**Spearman $\rho=1.0000$**；B10 为估算数据，此结果只用于外推一致性检查。
 - **耗时**：1.69 s
 - **结论**：
   1. 标度律幂指数跨越现代异构模型架构（LLaMA/Qwen/Gemma）依然保持高度有效（秩相关高达 0.983）；
-  2. B9 工业数据验证了 $C \approx 6ND$ 基础算力方程；超大尺度外推至 10 万亿参数平滑收敛，全景验证完全闭环。
+  2. B9 与 $C\approx6ND$ 近似一致；B10 与模型外推曲线一致，但不能视为独立实证验证。
+
+---
+
+## 问题二完成判定
+
+- **正式实验**：EXP-20260923-P2-01 至 EXP-20260923-P2-05 均已使用 Conda `AIOPS` 环境完成运行并生成结果。
+- **交付范围**：主模型参数、质量方向诊断、配比迁移校准、领域交互、弹性与等效替代、跨来源检查及问题三输入接口均已形成。
+- **已知限制**：B8 与主数据方向不同且原因未确定；B10 为估算数据而非独立实证；B2 点预测离散较大；A/B 数据源融合依赖 AS-P2-04 的可比性假设。
+- **结论**：问题二结果生产阶段完成，可以进入问题三；论文写作时须保留上述证据边界。

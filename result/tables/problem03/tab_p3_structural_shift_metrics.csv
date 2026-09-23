@@ -1,0 +1,4 @@
+﻿cost_function,regime_I_to_II_C_trans1_FLOPs,regime_II_to_III_C_trans2_FLOPs,broken_stick_C_crit_FLOPs,broken_stick_R2,bs_slope_before,bs_delta_slope,bootstrap_C_crit_low_FLOPs,bootstrap_C_crit_high_FLOPs,bootstrap_delta_slope_ci,p_value_delta_slope,shift_statistically_significant
+exp,1.00e+19,1.00e+20,3.73e+19,0.8519,0.1098,-0.1402,1.93e+19,7.20e+19,"[-0.2001, -0.1115]",0.0,True
+pow,N/A,3.73e+19,7.20e+19,0.6945,0.0978,-0.1287,3.73e+19,1.93e+20,"[-0.1819, -0.0902]",0.0,True
+log,N/A,1.00e+18,7.20e+20,0.9943,-0.0613,0.0547,3.73e+20,1.39e+21,"[0.0504, 0.0602]",0.0,True

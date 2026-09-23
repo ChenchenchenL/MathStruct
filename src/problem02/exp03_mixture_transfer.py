@@ -150,7 +150,7 @@ def compute_R(p_vec, tau=TAU_BENCH):
     return float(np.exp(tau * rel_diff)), rel_diff
 
 R_p0, rel_p0 = compute_R(p0)
-print(f"    Degeneration Verification at p0: R(p0) = {R_p0:.6f} (Strictly 1.000000, rel={rel_p0:.6f})")
+print(f"    Degeneration Verification at p0: R(p0) = {R_p0:.6f} (relative deviation={rel_p0:.6f})")
 
 # 3. Hessian Curvature & Domain Complementarity / Substitution Analysis (M2-EQ05)
 print("\n[3] Calculating Simplex Hessian Curvature Matrix (17 x 17)...")
@@ -317,10 +317,10 @@ ax1.set_ylim(0.0, 7.0)
 
 for idx, txt in enumerate(cvs):
     if idx == 0:
-        ax1.annotate(f"{txt:.2f}%", (scales[idx], cvs[idx]), textcoords="offset points", xytext=(-8, 10),
+        ax1.annotate(f"{txt:.2f}%", (scales[idx], cvs[idx]), textcoords="offset points", xytext=(-10, 14),
                      ha='right', fontweight='bold', color='navy', fontsize=8.8)
     else:
-        ax1.annotate(f"{txt:.2f}%", (scales[idx], cvs[idx]), textcoords="offset points", xytext=(0, 10),
+        ax1.annotate(f"{txt:.2f}%", (scales[idx], cvs[idx]), textcoords="offset points", xytext=(0, 14),
                      ha='center', fontweight='bold', color='navy', fontsize=8.8)
 
 # Right axis: Loss Std Dev (Nats)
@@ -334,16 +334,17 @@ ax1_twin.grid(False)
 
 for idx, txt in enumerate(stds):
     if idx == 0:
-        ax1_twin.annotate(f"{txt:.4f}", (scales[idx], txt), textcoords="offset points", xytext=(10, 8),
+        ax1_twin.annotate(f"{txt:.4f}", (scales[idx], txt), textcoords="offset points", xytext=(12, 12),
                           ha='left', fontweight='bold', color='crimson', fontsize=8.8)
     else:
-        ax1_twin.annotate(f"{txt:.4f}", (scales[idx], txt), textcoords="offset points", xytext=(0, -18),
+        ax1_twin.annotate(f"{txt:.4f}", (scales[idx], txt), textcoords="offset points", xytext=(0, -24),
                           ha='center', fontweight='bold', color='crimson', fontsize=8.8)
 
 # Combined clean legend
 lines = line1 + line2
 labels = [l.get_label() for l in lines]
-ax1.legend(lines, labels, loc="upper right", framealpha=0.92, fontsize=8.8)
+ax1.legend(lines, labels, loc="upper right", framealpha=0.92, fontsize=8.8,
+           handletextpad=1.3, borderpad=0.8, labelspacing=0.7)
 
 # Panel 2: Hessian Curvature Heatmap for Top Representative Domains
 key_domains = ["stackexchange", "pile_cc", "arxiv", "uspto_backgrounds", "ubuntu_irc", "hackernews", "enron_emails", "github"]
@@ -358,7 +359,9 @@ cbar.set_label("Multiplier Hessian Curvature $\\mathcal{H}^R_{ij}$ (Negative: Sy
 
 ax2.set_xticks(range(len(key_domains)))
 ax2.set_yticks(range(len(key_domains)))
-ax2.set_xticklabels(key_domains, rotation=45, ha='right', fontsize=9)
+short_domain_labels = ['StackEx', 'Pile-CC', 'arXiv', 'USPTO', 'Ubuntu', 'HN', 'Enron', 'GitHub']
+ax2.set_xticklabels(short_domain_labels, rotation=35, ha='right', fontsize=9,
+                    rotation_mode='anchor')
 ax2.set_yticklabels(key_domains, fontsize=9)
 
 # Overlay numerical values inside heatmap
@@ -382,7 +385,7 @@ caption = """# 图注：跨尺度配比强度校准与领域单纯形 Hessian �
 
 - **数据来源**：附件 A 真实配方实验与独立检验集（A4–A11，含 1M、60M、1B 尺度）。
 - **左图说明**：配比引起的损失变异系数（CV）与标准差随训练尺度的比较。左纵轴为 CV (%)，右纵轴为损失标准差（Nats）；三组数据分别对应 1M、60M 和 1B 检验集。
-- **右图说明**：8 个核心知识领域的单纯形 Hessian 二阶交互曲率矩阵 $\\mathcal{{H}}^R_{{ij}} = \\frac{{\\partial^2 R}}{{\\partial p_i \\partial p_j}}$（折算至模型损失需乘以外在系数 $T \\approx 0.3 \\sim 0.6$）。蓝色区块（负曲率）代表两领域具有超加性的协同互补效应；红色区块（正曲率）代表竞争替代效应。
+- **右图说明**：8 个核心知识领域的单纯形 Hessian 二阶交互曲率矩阵 $\\mathcal{{H}}^R_{{ij}} = \\frac{{\\partial^2 R}}{{\\partial p_i \\partial p_j}}$（折算至模型损失需乘以外在系数 $T \\approx 0.3 \\sim 0.6$）。横轴缩写 StackEx、Pile-CC、USPTO、HN 分别对应 `stackexchange`、`pile_cc`、`uspto_backgrounds`、`hackernews`；蓝色区块（负曲率）表示协同互补效应，红色区块（正曲率）表示竞争替代效应。
 - **说明**：配比标定参数、Hessian 数值和领域对排序见 `EXP-20260923-P2-03` 记录与配套结果表。
 """
 
@@ -406,7 +409,7 @@ fig3_meta = {
             "x_axis": "Model & Data Scale (Attachment A Validation Sets)",
             "y_axis_left": "Coefficient of Variation CV (%)",
             "y_axis_right": "Loss Standard Deviation (Nats)",
-            "observation": "Recipe sensitivity CV shrinks from 5.27% (1M) to 2.35% (1B), shrinkage ratio 0.4466; MSM exact non-linear tau* = 0.8348, adopting tau* = 0.85"
+            "observation": "Recipe-sensitivity CV is 5.27% (1M), 5.74% (60M), and 2.35% (1B); the 1B/1M ratio is 0.4466"
         },
         {
             "panel": "(b) Right",

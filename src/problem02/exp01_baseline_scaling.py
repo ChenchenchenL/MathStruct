@@ -227,7 +227,8 @@ ax1.set_xlabel("Training Tokens D (Billion Tokens, Log Scale)", labelpad=6)
 ax1.set_ylabel("Validation Cross-Entropy Loss (Nats)", labelpad=6)
 ax1.set_xlim(0.08, 350)
 ax1.set_ylim(1.95, 5.35)  # Extended upper limit so curves never touch the legend
-ax1.legend(title="Model Scale (N)", ncol=4, loc="upper right", framealpha=0.92, fontsize=8.5, columnspacing=1.0)
+ax1.legend(ncol=4, loc="upper right", framealpha=0.92, fontsize=8.5,
+           columnspacing=1.0, handletextpad=1.2, borderpad=0.8, labelspacing=0.6)
 
 # Panel 2: Predicted vs Actual Scatter across All Models with Residual Density
 y_all = df_b1['val_loss'].values
@@ -239,13 +240,13 @@ cbar = plt.colorbar(sc, ax=ax2, pad=0.02)
 cbar.set_label("Absolute Error |Residual| (Nats)", labelpad=6)
 
 lims = [1.95, 4.85]
-ax2.plot(lims, lims, 'k--', linewidth=1.4, alpha=0.8,
-         label="Ideal y = x")
+ax2.plot(lims, lims, 'k--', linewidth=1.4, alpha=0.8)
 ax2.set_xlim(lims)
 ax2.set_ylim(lims)
 ax2.set_xlabel("Predicted Loss L_pred (Nats)", labelpad=6)
 ax2.set_ylabel("Observed Loss L_obs (Nats)", labelpad=6)
-ax2.legend(loc="lower right", framealpha=0.9, fontsize=8.8)
+ax2.text(0.04, 0.94, "Dashed reference: y = x", transform=ax2.transAxes,
+         ha='left', va='top', fontsize=8.8, color='0.25')
 
 fig.tight_layout()
 

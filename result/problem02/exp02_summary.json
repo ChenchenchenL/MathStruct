@@ -45,7 +45,7 @@
     "b6_pearson": -0.33172329003244283,
     "b7_pearson": -0.3052351333166802,
     "b8_pearson": 0.913214413659646,
-    "b8_isolation_rationale": "Adversarial honeypot T12: corr(Q, Loss) = +0.913 contradicts physical law."
+    "b8_isolation_rationale": "B8 has opposite observed direction: corr(Q, Loss) = +0.913; it is excluded from the primary quality fit and retained for diagnosis."
   },
-  "runtime_sec": 1.14
+  "runtime_sec": 1.21
 }

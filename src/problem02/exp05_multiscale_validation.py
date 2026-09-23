@@ -192,7 +192,7 @@ b9 = pd.read_csv(b9_path).dropna(subset=['N_params_B', 'D_tokens_B', 'FLOPs'])
 b9_flops_theo = 6e18 * b9['N_params_B'] * b9['D_tokens_B']
 b9_flop_ratio = b9['FLOPs'] / b9_flops_theo
 med_b9_ratio = float(np.median(b9_flop_ratio))
-print(f"[6b] B9 Frontier Industry Models (n={len(b9)}): Median FLOPs / (6ND) = {med_b9_ratio:.5f} (Compute Law C=6ND Validated)")
+print(f"[6b] B9 Frontier Industry Models (n={len(b9)}): Median FLOPs / (6ND) = {med_b9_ratio:.5f} (C=6ND consistency check)")
 
 b9_summary = {
     'n_models': len(b9),
@@ -214,11 +214,11 @@ summary = {
     'base_parameters': base_p,
     'validation_results': val_records,
     'b9_industrial_validation': b9_summary,
-    'b2_cerebras_divergence_analysis': {
+    'b2_cerebras_fit_limitations': {
         'calibrated_r2': round(r2_b2_calib, 4),
         'calibrated_rmse': round(rmse_b2_calib, 4),
         'spearman_rho': round(float(spearman_b2), 4),
-        'architectural_divergence_rationale': 'Cerebras-GPT uses pure decoder architecture with different warmup, hyperparameter scaling, and step schedules from Pythia, leading to wider point variance across training steps (R2=0.3116), yet preserving robust monotonic rank order (rho=0.7881).'
+        'interpretation': 'Point predictions remain dispersed after intercept calibration (R2=0.3116), while rank ordering remains associated (rho=0.7881). Architecture, schedule, and data differences are possible contributors, but this experiment does not identify their causal effects.'
     },
     'runtime_sec': round(time.time() - t0, 2)
 }
@@ -250,7 +250,8 @@ ax1.set_xlabel("Model Parameter Scale N (Billion Params, Log Scale)", labelpad=6
 ax1.set_ylabel("Validation Loss (Nats)", labelpad=6)
 ax1.set_xlim(0.06, 90.0)
 ax1.set_ylim(1.65, 4.4)
-ax1.legend(loc="upper right", framealpha=0.92, fontsize=8.5, ncol=2)
+ax1.legend(loc="upper right", framealpha=0.92, fontsize=8.5, ncol=2,
+           handletextpad=1.4, borderpad=0.8, labelspacing=0.6)
 
 # Panel 2: Ultra-Large Scale Extrapolation Benchmark (B10 Dense Models, 100B - 3,000B)
 b10_sub = b10[b10['val_loss'] <= 2.35].copy()
@@ -277,7 +278,8 @@ ax2.set_xlabel("Parameter Scale N (100B - 3,000B, Log Scale)", labelpad=6)
 ax2.set_ylabel("Validation Loss (Nats)", labelpad=6)
 ax2.set_xlim(80, 3800)
 ax2.set_ylim(1.68, 2.65)
-ax2.legend(loc="upper right", framealpha=0.92, fontsize=8.0)
+ax2.legend(loc="upper right", framealpha=0.92, fontsize=8.0,
+           handletextpad=1.3, borderpad=0.8, labelspacing=0.7)
 
 fig.tight_layout()
 
@@ -324,7 +326,7 @@ fig5_meta = {
         "B3_Trajectories": {"N": 4000, "RMSE": 0.0038, "R2": 1.0000, "Spearman_rho": 1.0000, "nature": "Intra-Trajectory Continuity Check"},
         "B4_Modern_LLMs": {"N": 57, "RMSE": 0.1927, "R2": 0.8286, "Spearman_rho": 0.9830, "nature": "12 Open LLM Families Converged"},
         "B5_Literature": {"N": 44, "RMSE": 0.1997, "R2": 0.7249, "Spearman_rho": 0.9588, "nature": "Published Academic Scaling Laws"},
-        "B9_Frontier_Models": {"N": 121, "median_flop_ratio_to_6ND": 0.99998, "nature": "Industrial Compute Scaling C=6ND Validation"},
+        "B9_Frontier_Models": {"N": 121, "median_flop_ratio_to_6ND": 0.99998, "nature": "Industrial Compute Scaling C=6ND Consistency Check"},
         "B10_Ultra_Large": {"N_total": 128, "N_plotted": 119, "param_range_B": [100.0, 3000.0], "axis_display_limit_B": 3800.0, "RMSE": 0.0009, "R2": 1.0000, "Spearman_rho": 1.0000, "nature": "Extrapolation Benchmark Comparison (Consistent with Literature Estimates, Not Independent Empirical Validation)"}
     }
 }

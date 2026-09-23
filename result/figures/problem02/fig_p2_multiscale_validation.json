@@ -5,10 +5,10 @@
   "source_data": "Attachment B2, B3, B4 (scaling_baseline.csv), B5 (published_scaling_data.csv), B9 (supplementary_large_models.csv), B10 (supplementary_large_baseline.csv)",
   "script": "src/problem02/exp05_multiscale_validation.py",
   "code_version": "v1.1",
-  "format": "pdf/png",
-  "dpi": 300,
-  "width_mm": 280,
-  "height_mm": 115,
+  "format": "pdf/svg/png",
+  "dpi": 600,
+  "width_mm": 317.5,
+  "height_mm": 132.1,
   "title_in_figure": false,
   "caption": "See companion fig_p2_multiscale_validation.pdf.caption.md",
   "panels": [
@@ -17,14 +17,14 @@
       "description": "Cross-Family Invariance across 12 Modern Open LLM Families (B4, n=57)",
       "x_axis": "Model Parameter Scale N (Billion Params, Log Scale)",
       "y_axis": "Validation Loss (Nats)",
-      "observation": "Calibrated R2 = 0.8286, Spearman rho = 0.9830, validating universality of power law exponents"
+      "observation": "Scatter and fitted curves for the cross-family comparison; numerical metrics are reported in the experiment record"
     },
     {
       "panel": "(b) Right",
       "description": "Ultra-Large Scale Benchmark Comparison (B10, n=119 dense language models, 100B to 3,000B Parameters, displayed up to 3,800B)",
       "x_axis": "Parameter Scale N (100B - 3,000B, Log Scale)",
       "y_axis": "Validation Loss (Nats)",
-      "observation": "Smooth asymptotic convergence to theoretical entropy limit E without oscillations; consistent with literature estimation benchmarks (Spearman rho = 1.0000, RMSE = 0.0009 Nats)"
+      "observation": "Extrapolated curves and B10 estimation points; B10 is an extrapolation baseline"
     }
   ],
   "validation_metrics": {
@@ -59,7 +59,7 @@
     "B9_Frontier_Models": {
       "N": 121,
       "median_flop_ratio_to_6ND": 0.99998,
-      "nature": "Industrial Compute Scaling C=6ND Validation"
+      "nature": "Industrial Compute Scaling C=6ND Consistency Check"
     },
     "B10_Ultra_Large": {
       "N_total": 128,

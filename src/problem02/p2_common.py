@@ -29,9 +29,11 @@ os.makedirs(OUT_TABS, exist_ok=True)
 mpl.rcParams.update({
     'font.family': 'sans-serif',
     'font.sans-serif': ['DejaVu Sans', 'Arial', 'Helvetica', 'SimHei'],
+    'svg.fonttype': 'none',
+    'pdf.fonttype': 42,
     'axes.unicode_minus': False,
     'figure.dpi': 300,
-    'savefig.dpi': 300,
+    'savefig.dpi': 600,
     'axes.labelsize': 11,
     'axes.titlesize': 12,
     'xtick.labelsize': 10,
@@ -133,18 +135,131 @@ def compute_substitution_01(N, D, Q, p_mult, E, A, alpha, B, beta, rho, Q0=0.584
     }
 
 
-def save_figure_with_caption(fig, fig_path, caption_text, metadata_dict=None, dpi=300):
-    """Save high-DPI figure, companion .caption.md file, and .json metadata per result/AGENTS.md."""
+def require_matplotlib_panel_alignment(fig, fig_path, tolerance_pt=1.5):
+    """Audit comparable subplot rectangles and persist a compact QA report."""
+    fig.canvas.draw()
+    width_in, height_in = (float(value) for value in fig.get_size_inches())
+    width_pt, height_pt = width_in * 72.0, height_in * 72.0
+    panels = []
+    seen_cells = set()
+
+    for axis in fig.axes:
+        if not axis.get_visible() or str(axis.get_label()).startswith('<colorbar'):
+            continue
+        try:
+            subplot_spec = axis.get_subplotspec()
+        except AttributeError:
+            subplot_spec = None
+        if subplot_spec is None:
+            continue
+        grid_spec = subplot_spec.get_gridspec()
+        cell = (id(grid_spec), int(subplot_spec.num1), int(subplot_spec.num2))
+        if cell in seen_cells:
+            continue
+        seen_cells.add(cell)
+        position = axis.get_position(original=False)
+        panels.append({
+            'id': chr(ord('a') + len(panels)),
+            'bbox_pt': [
+                float(position.x0 * width_pt),
+                float(position.y0 * height_pt),
+                float(position.x1 * width_pt),
+                float(position.y1 * height_pt),
+            ],
+            'grid_id': f'grid-{id(grid_spec)}',
+            'row_start': int(subplot_spec.rowspan.start),
+            'row_stop': int(subplot_spec.rowspan.stop),
+            'col_start': int(subplot_spec.colspan.start),
+            'col_stop': int(subplot_spec.colspan.stop),
+        })
+
+    findings = []
+    row_groups = {}
+    for panel in panels:
+        key = (panel['grid_id'], panel['row_start'], panel['row_stop'])
+        row_groups.setdefault(key, []).append(panel)
+
+    for group_id, group in row_groups.items():
+        if len(group) < 2:
+            continue
+        bottoms = [panel['bbox_pt'][1] for panel in group]
+        tops = [panel['bbox_pt'][3] for panel in group]
+        heights = [top - bottom for bottom, top in zip(bottoms, tops)]
+        deviations = {
+            'bottom_pt': max(bottoms) - min(bottoms),
+            'top_pt': max(tops) - min(tops),
+            'height_pt': max(heights) - min(heights),
+        }
+        if max(deviations.values()) > tolerance_pt:
+            findings.append({
+                'severity': 'FAIL',
+                'kind': 'row-panel-misalignment',
+                'group': list(group_id),
+                'panels': [panel['id'] for panel in group],
+                'deviations': deviations,
+            })
+
+    verdict = 'PASS' if not findings else 'FIX BEFORE DELIVERY'
+    report = {
+        'schema_version': 1,
+        'backend': 'python-matplotlib',
+        'verdict': verdict,
+        'tolerance_pt': tolerance_pt,
+        'figure': {'width_pt': width_pt, 'height_pt': height_pt},
+        'panels': panels,
+        'findings': findings,
+        'summary': {'fail': len(findings), 'panel_count': len(panels)},
+    }
+    alignment_path = fig_path.replace('.pdf', '.alignment.json')
+    with open(alignment_path, 'w', encoding='utf-8') as handle:
+        json.dump(report, handle, indent=2, ensure_ascii=False)
+
+    overlay_path = fig_path.replace('.pdf', '.alignment.svg')
+    overlay = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width_pt}pt" height="{height_pt}pt" viewBox="0 0 {width_pt} {height_pt}">',
+        '<rect width="100%" height="100%" fill="white"/>',
+    ]
+    for panel in panels:
+        left, bottom, right, top = panel['bbox_pt']
+        color = '#2c7bb6' if verdict == 'PASS' else '#d7191c'
+        overlay.append(
+            f'<rect x="{left:.3f}" y="{height_pt - top:.3f}" width="{right - left:.3f}" '
+            f'height="{top - bottom:.3f}" fill="none" stroke="{color}" stroke-width="1.2"/>'
+        )
+        overlay.append(
+            f'<text x="{left + 2:.3f}" y="{height_pt - top + 10:.3f}" '
+            f'font-family="Arial, sans-serif" font-size="8" fill="{color}">{panel["id"]}</text>'
+        )
+    overlay.append('</svg>')
+    with open(overlay_path, 'w', encoding='utf-8') as handle:
+        handle.write('\n'.join(overlay) + '\n')
+
+    if findings:
+        raise RuntimeError(f'Panel alignment failed for {fig_path}: {findings}')
+    return report
+
+
+def save_figure_with_caption(fig, fig_path, caption_text, metadata_dict=None, dpi=600):
+    """Save vector/raster figure, alignment QA, caption, and metadata."""
+    require_matplotlib_panel_alignment(fig, fig_path, tolerance_pt=1.5)
     fig.savefig(fig_path, dpi=dpi, bbox_inches='tight')
     png_path = fig_path.replace('.pdf', '.png')
+    svg_path = fig_path.replace('.pdf', '.svg')
     if fig_path.endswith('.pdf'):
         fig.savefig(png_path, dpi=dpi, bbox_inches='tight')
+        fig.savefig(svg_path, bbox_inches='tight')
 
     caption_path = fig_path + ".caption.md"
     with open(caption_path, "w", encoding="utf-8") as f:
         f.write(caption_text.strip() + "\n")
 
     if metadata_dict is not None:
+        width_in, height_in = (float(value) for value in fig.get_size_inches())
+        metadata_dict['format'] = 'pdf/svg/png'
+        metadata_dict['dpi'] = dpi
+        metadata_dict['width_mm'] = round(width_in * 25.4, 1)
+        metadata_dict['height_mm'] = round(height_in * 25.4, 1)
+        metadata_dict['alignment_qa'] = os.path.basename(fig_path.replace('.pdf', '.alignment.json'))
         json_path = fig_path.replace('.pdf', '.json')
         with open(json_path, "w", encoding="utf-8") as f:
             json.dump(metadata_dict, f, indent=2, ensure_ascii=False)

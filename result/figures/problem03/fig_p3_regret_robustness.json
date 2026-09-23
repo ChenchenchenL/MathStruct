@@ -1,0 +1,11 @@
+{
+  "figure_id": "fig_p3_regret_robustness",
+  "experiment_id": "EXP-305",
+  "date": "2026-09-23",
+  "n_samples": 1000,
+  "minimax_regrets_mNats": {
+    "low": 11.502,
+    "mid": 0.704,
+    "high": 0.524
+  }
+}

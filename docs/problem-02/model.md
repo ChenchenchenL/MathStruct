@@ -14,7 +14,7 @@ $$L(N, D, Q, p) = E + A N^{-\alpha} + B D^{-\beta} \cdot \exp\left\{ -\rho (Q - 
   设模型参数规模为 $N$，名义训练 Token 量为 $D$。根据现代大语言模型信息论假说（Sharma et al., 2022; Hoffmann et al., 2022），低质量数据含有重复、噪声与低信息熵片段，偏斜的领域配比会导致部分知识域欠拟合或过拟合。因此，模型实际吸收的“有效知识量（Effective Token Volume）”为：
   $$\widetilde{D} = D \cdot \eta_Q(Q) \cdot \eta_p(p)$$
   式中：
-  - 质量效率项：$\eta_Q(Q) = \exp\left\{ \frac{\rho}{\beta} (Q - Q_{\text{anchor}}) \right\}$（当质量达到完美退化基准 $Q_{\text{anchor}} \equiv 1.0$ 时，$\eta_Q = 1$）；
+  - 质量效率项：$\eta_Q(Q) = \exp\left\{ \frac{\rho}{\beta} (Q - Q_{\text{anchor}}) \right\}$（当质量达到参考上界 $Q_{\text{anchor}} \equiv 1.0$ 时，$\eta_Q = 1$）；
   - 配比效率项：$\eta_p(p) = [R(p)]^{-1/\beta}$（当处于基线配方 $p_0$ 时，$\eta_p = 1$）。
   将有效数据量 $\widetilde{D}$ 代入 Chinchilla 经典双变量标度律的数据项 $B \widetilde{D}^{-\beta}$ 中：
   $$B \widetilde{D}^{-\beta} = B \left[ D \cdot \exp\left\{ \frac{\rho}{\beta} (Q - Q_{\text{anchor}}) \right\} \cdot [R(p)]^{-1/\beta} \right]^{-\beta} = B D^{-\beta} \cdot \exp\left\{ -\rho (Q - Q_{\text{anchor}}) \right\} \cdot R(p)$$
@@ -25,7 +25,7 @@ $$L(N, D, Q, p) = E + A N^{-\alpha} + B D^{-\beta} \cdot \exp\left\{ -\rho (Q - 
   - $N$：模型非嵌入参数规模（单位：$10^9$ 参数，即 Billion parameters，记为 $N_B$）；
   - $D$：累计训练 Token 数量（单位：$10^9$ Tokens，即 Billion tokens，记为 $D_B$）；
   - $Q$：训练语料综合质量评分（$[0, 1]$ 连续变量，越高质量越好）；
-  - $Q_{\text{anchor}}$：**理论退化锚点**（严格设为 $Q_{\text{anchor}} \equiv 1.0$，代表理想完美教材上限）；
+  - $Q_{\text{anchor}}$：**理论退化锚点**（设为 $Q_{\text{anchor}} \equiv 1.0$，代表质量评分的参考上界）；
   - $Q_{\text{base}}$：**经济成本底线**（设定为 $Q_{\text{base}} \equiv 0.584$，代表 The Pile 未清洗自然中位数质量，仅用于附录 B 数据清洗计算成本方程 $C_Q = D[g(Q) - g(Q_{\text{base}})]_+$，不偏移物理标度律退化常数）；
   - $p \in \Delta^{16}$：17 维领域配比向量，满足非负性 $p_i \ge 0$ 与和为一约束 $\sum_{i=1}^{17} p_i = 1$；
   - $E$：不可约交叉熵下限（Irreducible Loss，理论熵界，单位：Nats，参数 $E \ge 0$）；
@@ -90,7 +90,7 @@ $$\epsilon_x = \frac{x}{L} \frac{\partial L}{\partial x} \quad (x \in \{N, D, Q\
    $$\epsilon_Q = -\rho Q \frac{B D^{-\beta} e^{-\rho(Q-Q_{\text{anchor}})} R(p)}{L} < 0$$
 
 - **物理与经济含义**：
-  $\epsilon_x$ 表示要素 $x$ 每增加 1%，验证损失下降 $|\epsilon_x|\%$。在定义域内三者**严格恒负**，彻底推翻出题组第 T12 条正弹性诱捕毒丸。
+  $\epsilon_x$ 表示要素 $x$ 每增加 1%，验证损失下降 $|\epsilon_x|\%$。在当前模型的正参数与正变量定义域内，三项弹性均为负；这是模型结构的解析性质，外部适用性仍受数据和假设边界约束。
 
 ### M2-EQ03b 可约损失相对弹性（对 $L - E$）
 
@@ -174,4 +174,4 @@ $$N_{\text{new}} = \left[ N^{-\alpha} + \frac{T}{A} (1 - e^{-0.1 \rho}) \right]^
 |---|---|---|---|
 | `M2-v0` | 2026-09-23 | 初步草案：直接加乘模型 $L = E + AN^{-\alpha} + BD^{-\beta} R(p) e^{-\rho(Q-Q_0)}$ | 赛题初步要求 |
 | `M2-v1` | 2026-09-23 | 建立基于有效数据量假说 $\widetilde{D} = D \cdot \eta_Q(Q) \cdot \eta_p(p)$ 的物理推导；确立双基准退化性；推导 Scaling Ceiling Saturation 充要条件；建立单纯形 Hessian 互补判定法。 | 解决量纲自洽性与物理极限推导需求 |
-| `M2-v2` | 2026-09-23 | 全面修正与深化：① 严格分离退化锚点 $Q_{\text{anchor}} \equiv 1.0$ 与成本底线 $Q_{\text{base}} \equiv 0.584$；② 基于附录 B.1 成本函数封闭推导无量纲 ROI 比率与翻转阈值 $Q^*$；③ 补充 MSM 矩匹配封闭解 $\tau^* \approx 0.85$；④ 明确 $\mathcal{H}^R$ 与 $\mathcal{H}^L$ 乘子关系；⑤ 补充语义二前提 $D, p$ 固定。 | 响应学术全面复核，达到顶级建模交接标准 |
+| `M2-v2` | 2026-09-23 | 分离退化锚点 $Q_{\text{anchor}} \equiv 1.0$ 与成本底线 $Q_{\text{base}} \equiv 0.584$；基于附录 B.1 成本函数推导无量纲 ROI 比率与翻转阈值 $Q^*$；补充 MSM 矩匹配校准 $\tau^* \approx 0.85$；明确 $\mathcal{H}^R$ 与 $\mathcal{H}^L$ 乘子关系；补充语义二前提 $D,p$ 固定。 | 完成模型审查与问题三接口整理 |

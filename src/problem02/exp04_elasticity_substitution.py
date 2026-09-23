@@ -274,18 +274,17 @@ LL = E + term_N + term_D
 
 levels = np.linspace(2.1, 3.6, 16)
 cs = ax1.contour(NN, QQ, LL, levels=levels, cmap='viridis_r', linewidths=1.4)
-ax1.clabel(cs, inline=True, fontsize=8, fmt='L=%.2f')
+loss_cbar = fig.colorbar(cs, ax=ax1, pad=0.02)
+loss_cbar.set_label("Validation Loss L (Nats)", labelpad=6)
 
 # Plot representative models and substitution vectors
 sample_models = [0.16, 1.04, 6.86]
 for sm in sample_models:
     sub_res = compute_substitution_01(sm, D_fixed, 0.7, p_mult, E, A, alpha, B, beta, rho, Q0=Q0, delta_Q=0.1)
     ax1.plot([sm, sub_res['N_new']], [0.7, 0.8], 'r-o', linewidth=2.0, markersize=5)
-    ax1.annotate(f"Save {sub_res['delta_N_save']/sm*100:.0f}% N",
-                 xy=(sub_res['N_new'], 0.8), xytext=(sub_res['N_new']*0.72, 0.83),
-                 fontsize=8.5, color='darkred', fontweight='bold',
-                 bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="none", alpha=0.88),
-                 arrowprops=dict(arrowstyle="->", color='red', lw=1.2))
+    ax1.text(sub_res['N_new']*0.78, 0.855,
+             f"Save {sub_res['delta_N_save']/sm*100:.0f}% N",
+             fontsize=8.5, color='darkred', fontweight='bold', ha='center')
 
 ax1.set_xscale('log')
 ax1.set_xlabel("Model Parameter Scale N (Billion Params, Log Scale)")
@@ -310,8 +309,10 @@ for d_curve, color_c, lbl in [(10.0, 'navy', 'Tokens D=10B (Data-Constrained)'),
         else:
             gains.append(np.nan)
 
-    ax2.plot(N_dense, gains, color=color_c, linewidth=2.0, label=f"{lbl} ($N_{{\\mathrm{{crit}}}}={Nc_cur:.0f}$B)")
-    ax2.axvline(Nc_cur, color=color_c, linestyle='--', linewidth=1.5, alpha=0.85, label=f"Ceiling $N_{{\\mathrm{{crit}}}}={Nc_cur:.0f}$B ($D={d_curve:.0f}$B)")
+    ax2.plot(N_dense, gains, color=color_c, linewidth=2.0,
+             label=f"D={d_curve:.0f}B gain ($N_{{\\mathrm{{crit}}}}={Nc_cur:.0f}$B)")
+    ax2.axvline(Nc_cur, color=color_c, linestyle='--', linewidth=1.5, alpha=0.85,
+                label=f"$N_{{\\mathrm{{crit}}}}={Nc_cur:.0f}$B at D={d_curve:.0f}B")
     ax2.axvspan(Nc_cur, 10000, color=color_c, alpha=0.07)
 
 ax2.set_xscale('log')
@@ -320,7 +321,8 @@ ax2.set_xlabel("Current Model Scale N (Billion Params, Log Scale)")
 ax2.set_ylabel("Equivalent Required Param Gain $\\Delta N_{\\mathrm{gain}}$ (B, Log)")
 ax2.set_xlim(0.05, 10000)
 ax2.set_ylim(0.005, 30000)
-ax2.legend(loc="upper left", framealpha=0.9, fontsize=8.0)
+ax2.legend(loc="upper left", framealpha=0.9, fontsize=8.0,
+           handletextpad=1.3, borderpad=0.8, labelspacing=0.7)
 
 fig.tight_layout()
 
