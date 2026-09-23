@@ -1,0 +1,44 @@
+{
+  "figure_id": "fig_p2_classical_scaling",
+  "experiment_id": "EXP-20260923-P2-01",
+  "problem": "problem-02",
+  "source_data": "Attachment B1 (pythia_training_log_existing.csv, 1,176 points)",
+  "script": "src/problem02/exp01_baseline_scaling.py",
+  "code_version": "v1.1",
+  "format": "pdf/png",
+  "dpi": 300,
+  "width_mm": 280,
+  "height_mm": 115,
+  "title_in_figure": false,
+  "caption": "See companion fig_p2_classical_scaling.pdf.caption.md",
+  "panels": [
+    {
+      "panel": "(a) Left",
+      "description": "Validation Loss vs Training Tokens D across 8 Pythia model scales (0.0705B to 11.9658B, n=1,176)",
+      "x_axis": "Training Tokens D (Billion Tokens, Log Scale)",
+      "y_axis": "Validation Cross-Entropy Loss (Nats)",
+      "curves": "Chinchilla Power Law Fit vs Observed Pythia checkpoints across 8 model scales"
+    },
+    {
+      "panel": "(b) Right",
+      "description": "Predicted Loss vs Observed Loss across all 1,176 Pythia checkpoints with Absolute Error colormap and ideal y = x line",
+      "x_axis": "Predicted Loss L_pred (Nats)",
+      "y_axis": "Observed Loss L_obs (Nats)",
+      "curves": "Scatter points colored by absolute error with diagonal reference line y = x"
+    }
+  ],
+  "parameters": {
+    "E": 1.6898,
+    "A": 0.354,
+    "alpha": 0.34,
+    "B": 1.2403,
+    "beta": 0.2799
+  },
+  "metrics": {
+    "n_samples": 1176,
+    "R2": 1.0,
+    "RMSE": 0.00015,
+    "LOOCV_R2": 1.0,
+    "LOOCV_RMSE": 0.00015
+  }
+}

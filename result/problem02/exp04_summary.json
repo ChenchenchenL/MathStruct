@@ -1,0 +1,174 @@
+{
+  "experiment_id": "EXP-20260923-P2-04",
+  "date": "2026-09-23",
+  "parameters": {
+    "E": 1.689797562921665,
+    "A": 0.35398032066663976,
+    "alpha": 0.3399765818952823,
+    "B": 1.240305583546004,
+    "beta": 0.27987812854524496,
+    "rho": 0.6646026032364923
+  },
+  "elasticity_summary": {
+    "all_negative_verified": true,
+    "sample_1B_300B_Q07": {
+      "N_params_B": 1.04,
+      "D_tokens_B": 300.0,
+      "Q_score": 0.7,
+      "val_loss": 2.3459,
+      "reducible_loss": 0.6561,
+      "eps_N": -0.0506,
+      "eps_D": -0.0366,
+      "eps_Q": -0.0608,
+      "eps_N_star": -0.181,
+      "eps_D_star": -0.1309,
+      "eps_Q_star": -0.2175,
+      "mrts_NQ": 1.7856
+    }
+  },
+  "marginal_roi_analysis": {
+    "equilibrium_thresholds_1B_300B": {
+      "Q_star_exponential": 0.848,
+      "Q_star_power": 0.7955,
+      "Q_star_logarithmic": ">1.0"
+    },
+    "sample_1B_300B_Q07": {
+      "N": 1.0409,
+      "D": 300.0,
+      "Q": 0.7,
+      "MRTS": 1.7876734537247867,
+      "ROI_ratio_exp": 2.6807194605258755,
+      "ROI_ratio_pow": 1.5635627875143912,
+      "ROI_ratio_log": 4.290416288939488
+    }
+  },
+  "substitution_sample": [
+    {
+      "Model_N_B": 0.0705,
+      "Tokens_D_B": 300.0,
+      "Initial_Q": 0.7,
+      "Delta_L_Quality": 0.01973,
+      "Downsized_N_B": 0.066,
+      "Param_Saved_B": 0.0045,
+      "Param_Saved_Pct": 6.37,
+      "Critical_N_B": 4878.8712,
+      "Equiv_Param_N_B": "0.0754B",
+      "Param_Gain_Required": "+0.0049B (+7.0%)",
+      "Saturated": false,
+      "Theoretical_Verdict": "Finite Replaceable"
+    },
+    {
+      "Model_N_B": 0.1624,
+      "Tokens_D_B": 300.0,
+      "Initial_Q": 0.7,
+      "Delta_L_Quality": 0.01973,
+      "Downsized_N_B": 0.1489,
+      "Param_Saved_B": 0.0135,
+      "Param_Saved_Pct": 8.34,
+      "Critical_N_B": 4878.8712,
+      "Equiv_Param_N_B": "0.1776B",
+      "Param_Gain_Required": "+0.0152B (+9.4%)",
+      "Saturated": false,
+      "Theoretical_Verdict": "Finite Replaceable"
+    },
+    {
+      "Model_N_B": 0.409,
+      "Tokens_D_B": 300.0,
+      "Initial_Q": 0.7,
+      "Delta_L_Quality": 0.01973,
+      "Downsized_N_B": 0.3633,
+      "Param_Saved_B": 0.0457,
+      "Param_Saved_Pct": 11.18,
+      "Critical_N_B": 4878.8712,
+      "Equiv_Param_N_B": "0.4628B",
+      "Param_Gain_Required": "+0.0538B (+13.1%)",
+      "Saturated": false,
+      "Theoretical_Verdict": "Finite Replaceable"
+    },
+    {
+      "Model_N_B": 1.0409,
+      "Tokens_D_B": 300.0,
+      "Initial_Q": 0.7,
+      "Delta_L_Quality": 0.01973,
+      "Downsized_N_B": 0.8855,
+      "Param_Saved_B": 0.1554,
+      "Param_Saved_Pct": 14.92,
+      "Critical_N_B": 4878.8712,
+      "Equiv_Param_N_B": "1.2351B",
+      "Param_Gain_Required": "+0.1942B (+18.7%)",
+      "Saturated": false,
+      "Theoretical_Verdict": "Finite Replaceable"
+    },
+    {
+      "Model_N_B": 1.4162,
+      "Tokens_D_B": 300.0,
+      "Initial_Q": 0.7,
+      "Delta_L_Quality": 0.01973,
+      "Downsized_N_B": 1.1842,
+      "Param_Saved_B": 0.232,
+      "Param_Saved_Pct": 16.38,
+      "Critical_N_B": 4878.8712,
+      "Equiv_Param_N_B": "1.7135B",
+      "Param_Gain_Required": "+0.2973B (+21.0%)",
+      "Saturated": false,
+      "Theoretical_Verdict": "Finite Replaceable"
+    },
+    {
+      "Model_N_B": 2.7828,
+      "Tokens_D_B": 300.0,
+      "Initial_Q": 0.7,
+      "Delta_L_Quality": 0.01973,
+      "Downsized_N_B": 2.2256,
+      "Param_Saved_B": 0.5572,
+      "Param_Saved_Pct": 20.02,
+      "Critical_N_B": 4878.8712,
+      "Equiv_Param_N_B": "3.5440B",
+      "Param_Gain_Required": "+0.7612B (+27.4%)",
+      "Saturated": false,
+      "Theoretical_Verdict": "Finite Replaceable"
+    },
+    {
+      "Model_N_B": 6.861,
+      "Tokens_D_B": 300.0,
+      "Initial_Q": 0.7,
+      "Delta_L_Quality": 0.01973,
+      "Downsized_N_B": 5.0844,
+      "Param_Saved_B": 1.7766,
+      "Param_Saved_Pct": 25.89,
+      "Critical_N_B": 4878.8712,
+      "Equiv_Param_N_B": "9.5789B",
+      "Param_Gain_Required": "+2.7179B (+39.6%)",
+      "Saturated": false,
+      "Theoretical_Verdict": "Finite Replaceable"
+    },
+    {
+      "Model_N_B": 11.9658,
+      "Tokens_D_B": 300.0,
+      "Initial_Q": 0.7,
+      "Delta_L_Quality": 0.01973,
+      "Downsized_N_B": 8.3617,
+      "Param_Saved_B": 3.6041,
+      "Param_Saved_Pct": 30.12,
+      "Critical_N_B": 4878.8712,
+      "Equiv_Param_N_B": "17.9978B",
+      "Param_Gain_Required": "+6.0320B (+50.4%)",
+      "Saturated": false,
+      "Theoretical_Verdict": "Finite Replaceable"
+    },
+    {
+      "Model_N_B": 70.0,
+      "Tokens_D_B": 300.0,
+      "Initial_Q": 0.7,
+      "Delta_L_Quality": 0.01973,
+      "Downsized_N_B": 37.5139,
+      "Param_Saved_B": 32.4861,
+      "Param_Saved_Pct": 46.41,
+      "Critical_N_B": 4878.8712,
+      "Equiv_Param_N_B": "154.6540B",
+      "Param_Gain_Required": "+84.6540B (+120.9%)",
+      "Saturated": false,
+      "Theoretical_Verdict": "Finite Replaceable"
+    }
+  ],
+  "runtime_sec": 0.31
+}

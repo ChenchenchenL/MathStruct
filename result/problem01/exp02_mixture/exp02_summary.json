@@ -1,0 +1,75 @@
+{
+  "seed": 20260923,
+  "runtime_s": 1.4,
+  "rowsum_minmax": [
+    0.9960000000000001,
+    1.0030000000000001
+  ],
+  "y_stats": {
+    "mean": 5.344656776171178,
+    "std": 0.32447530463246893
+  },
+  "cv": {
+    "baseline_rmse": 0.32447530463246893,
+    "ols_rmse": 0.2922092269360686,
+    "ols_r2": 0.19044317195975635,
+    "histgb_rmse": 0.17346567747567118,
+    "histgb_r2": 0.7140645629131498
+  },
+  "full_ols_r2": 0.2460923719607676,
+  "top_transfers": [
+    [
+      "pubmed_central",
+      "ubuntu_irc",
+      -0.0375373918143045
+    ],
+    [
+      "pile_cc",
+      "ubuntu_irc",
+      -0.037277980401261596
+    ],
+    [
+      "arxiv",
+      "ubuntu_irc",
+      -0.03619710243393198
+    ],
+    [
+      "github",
+      "ubuntu_irc",
+      -0.03617104202939306
+    ],
+    [
+      "freelaw",
+      "ubuntu_irc",
+      -0.03560986292045522
+    ]
+  ],
+  "worst_transfers": [
+    [
+      "ubuntu_irc",
+      "uspto_backgrounds",
+      0.01941135103602706
+    ],
+    [
+      "ubuntu_irc",
+      "gutenberg_pg_19",
+      0.01957395327946185
+    ],
+    [
+      "stackexchange",
+      "hackernews",
+      0.021183785552206714
+    ],
+    [
+      "dm_mathematics",
+      "hackernews",
+      0.02194932856743651
+    ],
+    [
+      "ubuntu_irc",
+      "hackernews",
+      0.02221308919059111
+    ]
+  ],
+  "est_spearman": "see stdout"
+}

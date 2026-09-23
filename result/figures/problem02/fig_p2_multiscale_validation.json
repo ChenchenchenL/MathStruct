@@ -1,0 +1,78 @@
+{
+  "figure_id": "fig_p2_multiscale_validation",
+  "experiment_id": "EXP-20260923-P2-05",
+  "problem": "problem-02",
+  "source_data": "Attachment B2, B3, B4 (scaling_baseline.csv), B5 (published_scaling_data.csv), B9 (supplementary_large_models.csv), B10 (supplementary_large_baseline.csv)",
+  "script": "src/problem02/exp05_multiscale_validation.py",
+  "code_version": "v1.1",
+  "format": "pdf/png",
+  "dpi": 300,
+  "width_mm": 280,
+  "height_mm": 115,
+  "title_in_figure": false,
+  "caption": "See companion fig_p2_multiscale_validation.pdf.caption.md",
+  "panels": [
+    {
+      "panel": "(a) Left",
+      "description": "Cross-Family Invariance across 12 Modern Open LLM Families (B4, n=57)",
+      "x_axis": "Model Parameter Scale N (Billion Params, Log Scale)",
+      "y_axis": "Validation Loss (Nats)",
+      "observation": "Calibrated R2 = 0.8286, Spearman rho = 0.9830, validating universality of power law exponents"
+    },
+    {
+      "panel": "(b) Right",
+      "description": "Ultra-Large Scale Benchmark Comparison (B10, n=119 dense language models, 100B to 3,000B Parameters, displayed up to 3,800B)",
+      "x_axis": "Parameter Scale N (100B - 3,000B, Log Scale)",
+      "y_axis": "Validation Loss (Nats)",
+      "observation": "Smooth asymptotic convergence to theoretical entropy limit E without oscillations; consistent with literature estimation benchmarks (Spearman rho = 1.0000, RMSE = 0.0009 Nats)"
+    }
+  ],
+  "validation_metrics": {
+    "B2_Cerebras": {
+      "N": 1029,
+      "RMSE": 0.4185,
+      "R2": 0.3116,
+      "Spearman_rho": 0.7881,
+      "nature": "Semi-Synthetic Out-of-Family"
+    },
+    "B3_Trajectories": {
+      "N": 4000,
+      "RMSE": 0.0038,
+      "R2": 1.0,
+      "Spearman_rho": 1.0,
+      "nature": "Intra-Trajectory Continuity Check"
+    },
+    "B4_Modern_LLMs": {
+      "N": 57,
+      "RMSE": 0.1927,
+      "R2": 0.8286,
+      "Spearman_rho": 0.983,
+      "nature": "12 Open LLM Families Converged"
+    },
+    "B5_Literature": {
+      "N": 44,
+      "RMSE": 0.1997,
+      "R2": 0.7249,
+      "Spearman_rho": 0.9588,
+      "nature": "Published Academic Scaling Laws"
+    },
+    "B9_Frontier_Models": {
+      "N": 121,
+      "median_flop_ratio_to_6ND": 0.99998,
+      "nature": "Industrial Compute Scaling C=6ND Validation"
+    },
+    "B10_Ultra_Large": {
+      "N_total": 128,
+      "N_plotted": 119,
+      "param_range_B": [
+        100.0,
+        3000.0
+      ],
+      "axis_display_limit_B": 3800.0,
+      "RMSE": 0.0009,
+      "R2": 1.0,
+      "Spearman_rho": 1.0,
+      "nature": "Extrapolation Benchmark Comparison (Consistent with Literature Estimates, Not Independent Empirical Validation)"
+    }
+  }
+}

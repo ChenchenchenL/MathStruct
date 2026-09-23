@@ -1,0 +1,69 @@
+{
+  "figure_id": "fig_p2_domain_interactions",
+  "experiment_id": "EXP-20260923-P2-03",
+  "problem": "problem-02",
+  "source_data": "Attachment A RegMix tables (train_mixture_1m.csv, test_mixture_1B.csv, test_pile_loss_*.csv)",
+  "script": "src/problem02/exp03_mixture_transfer.py",
+  "code_version": "v1.1",
+  "format": "pdf/png",
+  "dpi": 300,
+  "width_mm": 280,
+  "height_mm": 115,
+  "title_in_figure": false,
+  "caption": "See companion fig_p2_domain_interactions.pdf.caption.md",
+  "panels": [
+    {
+      "panel": "(a) Left",
+      "description": "Multi-scale Variance Shrinkage across 1M, 60M, and 1B models with Dual Y-Axes (CV % and Loss Std Nats)",
+      "x_axis": "Model & Data Scale (Attachment A Validation Sets)",
+      "y_axis_left": "Coefficient of Variation CV (%)",
+      "y_axis_right": "Loss Standard Deviation (Nats)",
+      "observation": "Recipe sensitivity CV shrinks from 5.27% (1M) to 2.35% (1B), shrinkage ratio 0.4466; MSM exact non-linear tau* = 0.8348, adopting tau* = 0.85"
+    },
+    {
+      "panel": "(b) Right",
+      "description": "Simplex Hessian Curvature Heatmap H^R_ij for 8 Representative Domains",
+      "x_axis": "Domain j",
+      "y_axis": "Domain i",
+      "observation": "Top-1 synergy: stackexchange + pile_cc (-9.00); Top-2 synergy: arxiv + uspto (-6.60); Top-1 competitive: pile_cc + uspto (+8.78); Top-2 competitive: enron + hackernews (+4.96)"
+    }
+  ],
+  "calibration": {
+    "cv_1m": 0.05267,
+    "cv_1b": 0.02352,
+    "cv_shrinkage_ratio": 0.4466,
+    "tau_linear": 0.8686,
+    "tau_exact": 0.8348,
+    "tau_benchmark": 0.85
+  },
+  "top_pairs": {
+    "synergy_top1": {
+      "domains": [
+        "stackexchange",
+        "pile_cc"
+      ],
+      "curvature": -8.9955
+    },
+    "synergy_top2": {
+      "domains": [
+        "arxiv",
+        "uspto_backgrounds"
+      ],
+      "curvature": -6.5963
+    },
+    "competitive_top1": {
+      "domains": [
+        "pile_cc",
+        "uspto_backgrounds"
+      ],
+      "curvature": 8.7823
+    },
+    "competitive_top2": {
+      "domains": [
+        "enron_emails",
+        "hackernews"
+      ],
+      "curvature": 4.9609
+    }
+  }
+}

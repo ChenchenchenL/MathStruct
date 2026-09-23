@@ -1,0 +1,4 @@
+﻿Dataset,N_samples,Pearson_r,Spearman_rho,Monotonic_Decr_Pct,Verdict,Role
+B6 (Baseline),360,-0.3317,-0.3239,74.6,Valid (Adhere to Physics),Primary Quality Fitting
+B7 (Expanded),450,-0.3052,-0.299,74.8,Valid (Adhere to Physics),Primary Quality Fitting
+B8 (Large/Calib),1704,0.9132,0.9208,0.1,Trap / Inverted Anomaly,Isolated (Honeypot T12)

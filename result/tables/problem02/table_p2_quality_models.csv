@@ -1,0 +1,5 @@
+﻿Model,Functional_Form,Estimated_Parameter,R2,RMSE,MAE,AIC,BIC,Verdict
+"Model 1 (Exponential, Fixed B1 Base, Q0=1.0)",L = E + A*N^-alpha + B*D^-beta * exp(-rho*(Q - 1.0)),"rho = 0.6646 (95% CI: [0.6275, 0.7013])",0.91607,0.09869,0.07507,-2082.21,-2078.1,Selected Primary (Physics-Preserving Degeneracy to Chinchilla)
+"Model 1b (Exponential, Fixed B1 Base, Q0=0.584)",L = E + A*N^-alpha + B*D^-beta * exp(-rho*(Q - 0.584)),rho = 1.1366,0.78273,0.15878,0.13957,-1654.22,-1650.11,Ablation Comparison: Fails Degeneracy (R2 collapses to 0.7827)
+"Model 2 (Power Law, Fixed B1 Base)",L = E + A*N^-alpha + B*D^-beta * Q^-gamma,gamma = 0.3012,0.88667,0.11468,0.08926,-1947.08,-1942.97,"Inferior to Exp (Higher AIC, Risk of Q->0 Divergence)"
+Model 3 (Unconstrained Joint Fit),All 6 parameters freely estimated on B7,"rho=0.3441, E=1.0136, a=0.2832, b=0.1090",0.96911,0.05987,0.04612,-2521.99,-2497.34,Ablation Comparison (Overfits B7: beta collapses 0.28->0.11 due to slice collinearity)

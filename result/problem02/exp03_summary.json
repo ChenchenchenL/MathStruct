@@ -1,0 +1,101 @@
+{
+  "experiment_id": "EXP-20260923-P2-03",
+  "date": "2026-09-23",
+  "f_p0": 4.844715062772343,
+  "tau_calibration": {
+    "empirical_cv_1B": 0.023522453738938968,
+    "recipe_std_1B": 0.02708060536937237,
+    "tau_linear": 0.8686088592961219,
+    "tau_exact_nonlinear": 0.8348,
+    "tau_adopted_benchmark": 0.85
+  },
+  "cv_shrinkage_ratio_1B_1M": 0.4465650006917653,
+  "multi_scale_stats": [
+    {
+      "scale": "1M",
+      "n_samples": 256,
+      "mean_loss": 5.282281966306842,
+      "std_loss": 0.27823997177568216,
+      "cv_pct": 5.267419905836952
+    },
+    {
+      "scale": "60M",
+      "n_samples": 256,
+      "mean_loss": 3.822911177618572,
+      "std_loss": 0.21930850483550943,
+      "cv_pct": 5.736688472373155
+    },
+    {
+      "scale": "1B",
+      "n_samples": 64,
+      "mean_loss": 2.225570281856971,
+      "std_loss": 0.05235087399773796,
+      "cv_pct": 2.3522453738938967
+    }
+  ],
+  "top_synergistic_pairs": [
+    {
+      "domain_1": "stackexchange",
+      "domain_2": "pile_cc",
+      "hessian_curvature_H_R": -8.9955,
+      "relationship": "Complementary (Synergy)"
+    },
+    {
+      "domain_1": "arxiv",
+      "domain_2": "uspto_backgrounds",
+      "hessian_curvature_H_R": -6.5963,
+      "relationship": "Complementary (Synergy)"
+    },
+    {
+      "domain_1": "ubuntu_irc",
+      "domain_2": "uspto_backgrounds",
+      "hessian_curvature_H_R": -5.3402,
+      "relationship": "Complementary (Synergy)"
+    },
+    {
+      "domain_1": "nih_exporter",
+      "domain_2": "uspto_backgrounds",
+      "hessian_curvature_H_R": -5.2306,
+      "relationship": "Complementary (Synergy)"
+    },
+    {
+      "domain_1": "hackernews",
+      "domain_2": "uspto_backgrounds",
+      "hessian_curvature_H_R": -5.2228,
+      "relationship": "Complementary (Synergy)"
+    }
+  ],
+  "top_substitution_pairs": [
+    {
+      "domain_1": "stackexchange",
+      "domain_2": "hackernews",
+      "hessian_curvature_H_R": 3.8318,
+      "relationship": "Substitution (Competitive)"
+    },
+    {
+      "domain_1": "nih_exporter",
+      "domain_2": "enron_emails",
+      "hessian_curvature_H_R": 3.8817,
+      "relationship": "Substitution (Competitive)"
+    },
+    {
+      "domain_1": "arxiv",
+      "domain_2": "pile_cc",
+      "hessian_curvature_H_R": 4.2833,
+      "relationship": "Substitution (Competitive)"
+    },
+    {
+      "domain_1": "enron_emails",
+      "domain_2": "hackernews",
+      "hessian_curvature_H_R": 4.9609,
+      "relationship": "Substitution (Competitive)"
+    },
+    {
+      "domain_1": "pile_cc",
+      "domain_2": "uspto_backgrounds",
+      "hessian_curvature_H_R": 8.7823,
+      "relationship": "Substitution (Competitive)"
+    }
+  ],
+  "runtime_sec": 10.2
+}

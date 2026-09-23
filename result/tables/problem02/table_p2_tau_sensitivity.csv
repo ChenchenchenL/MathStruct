@@ -1,0 +1,8 @@
+﻿tau,Mean_R,Std_R,Target_Empirical_CV_1B,Absolute_Error_vs_CV,Role
+0.45,1.02068,0.01245,0.02352,0.01107,Sensitivity Grid
+0.6,1.0277,0.01672,0.02352,0.00681,Sensitivity Grid
+0.8348,1.03882,0.02352,0.02352,0.0,Optimal Non-Linear
+0.85,1.03955,0.02397,0.02352,0.00045,Benchmark Adopted
+1.0,1.04675,0.0284,0.02352,0.00488,Sensitivity Grid
+1.2,1.05645,0.03441,0.02352,0.01089,Sensitivity Grid
+1.5,1.07122,0.04364,0.02352,0.02012,Sensitivity Grid

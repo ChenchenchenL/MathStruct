@@ -1,0 +1,45 @@
+{
+  "figure_id": "fig_p2_quality_effect",
+  "experiment_id": "EXP-20260923-P2-02",
+  "problem": "problem-02",
+  "source_data": "Attachment B7 (supplementary_NQ_experiment_expanded.csv, 450 pts) & B8 (supplementary_NQ_experiment_large.csv, 1,704 pts)",
+  "script": "src/problem02/exp02_quality_scaling.py",
+  "code_version": "v1.1",
+  "format": "pdf/png",
+  "dpi": 300,
+  "width_mm": 280,
+  "height_mm": 115,
+  "title_in_figure": false,
+  "caption": "See companion fig_p2_quality_effect.pdf.caption.md",
+  "panels": [
+    {
+      "panel": "(a) Left",
+      "description": "Validation Loss vs Quality Score Q across 6 scale slices in B7",
+      "x_axis": "Data Quality Score Q",
+      "y_axis": "Validation Cross-Entropy Loss (Nats)",
+      "observation": "Strict smooth monotonic decrease conforming to Effective Token Volume Hypothesis (rho = 0.6646)"
+    },
+    {
+      "panel": "(b) Right",
+      "description": "B8 Anomaly Diagnosis vs Standard B7 Trajectory Slice",
+      "x_axis": "Data Quality Score Q",
+      "y_axis": "Validation Cross-Entropy Loss (Nats)",
+      "observation": "B8 exhibits anomalous positive slope (r=+0.9132) violating physical monotonicity; isolated by P2-02"
+    }
+  ],
+  "estimated_parameter": {
+    "rho": 0.6646,
+    "rho_std_error": 0.0135,
+    "rho_95_ci": [
+      0.6275,
+      0.7013
+    ]
+  },
+  "metrics": {
+    "R2": 0.91607,
+    "RMSE": 0.09869,
+    "MAE": 0.07507,
+    "AIC": -2082.21,
+    "BIC": -2078.1
+  }
+}

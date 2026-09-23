@@ -1,0 +1,9 @@
+﻿Domain_1,Domain_2,Role,Curvature_h_0010,Curvature_h_0015_Primary,Curvature_h_0020,Curvature_h_0025,Curvature_h_0030,Mean_Curvature,Sign_Consistency
+stackexchange,pile_cc,Top-1 Synergy,-48.0302,-8.9955,-4.37,-1.6275,-2.2463,-13.0539,Consistent
+arxiv,uspto_backgrounds,Top-2 Synergy,0.019,-6.5963,0.0624,-0.0023,0.1567,-1.2721,Sign-Sensitive
+ubuntu_irc,uspto_backgrounds,Top-3 Synergy,0.019,-5.3402,-0.614,-0.3931,-0.2723,-1.3201,Sign-Sensitive
+arxiv,github,Domain Pair (Code+Science),1.4335,-1.4724,0.0337,-0.043,-0.0779,-0.0252,Sign-Sensitive
+pile_cc,gutenberg_pg_19,Domain Pair (Web+Books),-0.8308,-0.1631,-6.8447,-1.4868,-3.4917,-2.5634,Consistent
+arxiv,pile_cc,Top-3 Competitive,8.1435,4.2833,-4.5696,0.6178,-1.2984,1.4353,Sign-Sensitive
+enron_emails,hackernews,Top-2 Competitive,10.4561,4.9609,3.3722,2.4036,1.6689,4.5724,Consistent
+pile_cc,uspto_backgrounds,Top-1 Competitive,-0.5416,8.7823,-1.8817,3.7644,2.4781,2.5203,Sign-Sensitive

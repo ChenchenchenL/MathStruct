@@ -1,0 +1,37 @@
+{
+  "seed": 20260923,
+  "runtime_s": 1.8,
+  "item2_1M": {
+    "baseline_rmse": 0.32447530463246893
+  },
+  "drift": {
+    "60M": {
+      "spearman_vs_1M": 0.7735,
+      "top_moves": {
+        "enron_emails": 0.0189,
+        "ubuntu_irc": 0.0172,
+        "nih_exporter": 0.0078,
+        "gutenberg_pg_19": 0.0077,
+        "arxiv": 0.0076
+      }
+    },
+    "1B": {
+      "spearman_vs_1M": 0.6206,
+      "top_moves": {
+        "enron_emails": 0.0342,
+        "pubmed_central": 0.0238,
+        "ubuntu_irc": 0.0199,
+        "dm_mathematics": 0.0193,
+        "philpapers": 0.0169
+      }
+    }
+  },
+  "combo_case": {
+    "ols": 0.0035756380649187847,
+    "hgb": -0.0652498429934294,
+    "single_sum_ols": 0.0010101263632139432,
+    "single_sum_hgb": 0.011856106672397004
+  },
+  "as09": "see stdout",
+  "as04": "see stdout"
+}

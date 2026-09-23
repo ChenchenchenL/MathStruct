@@ -1,0 +1,17 @@
+{
+  "figure_id": "F01A_problem-01_domain_quality",
+  "experiment_id": "EXP-20260923-05",
+  "problem": "problem-01",
+  "model_version": "M1-v3",
+  "source_data": "A1 v1",
+  "script": "src/problem01/exp05_final_closure.py",
+  "code_version": "82f75b73ce00b78e3150ad2b047f7767b0e226726c5c96644d1a9e8a8f53fd55",
+  "format": "png/pdf",
+  "dpi": 600,
+  "width_mm": 170,
+  "height_mm": 78,
+  "title_in_figure": false,
+  "caption_file": "fig_p1_quality_conflict.caption.md",
+  "caption": "Domain-level quality score across the seven quality signal domains.",
+  "notes": "Bars show medians and horizontal error bars show half the interquartile range."
+}

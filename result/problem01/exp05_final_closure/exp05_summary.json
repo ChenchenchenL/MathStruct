@@ -1,0 +1,21 @@
+{
+  "experiment_id": "EXP-20260923-05",
+  "model_version": "M1-v3",
+  "data_version": "A1-A15 v1",
+  "code_version": "82f75b73ce00b78e3150ad2b047f7767b0e226726c5c96644d1a9e8a8f53fd55",
+  "seed": 20260923,
+  "parameters": {
+    "selected_feature_count": 17,
+    "tau": 0.8736,
+    "lambda": 0.5,
+    "alr_reference": "pile_cc",
+    "epsilon": 0.001,
+    "missing_value_policy": "row-wise equal-weight renormalization over available selected features"
+  },
+  "rows": {
+    "a1": 51230,
+    "a2": 17523,
+    "a3": 203752
+  },
+  "runtime_s": 29.67
+}

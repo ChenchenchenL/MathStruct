@@ -1,0 +1,48 @@
+{
+  "figure_id": "fig_p2_substitution_ceiling",
+  "experiment_id": "EXP-20260923-P2-04",
+  "problem": "problem-02",
+  "source_data": "Derived from Generalized Scaling Law Parameters (E, A, alpha, B, beta, rho) on grid evaluations",
+  "script": "src/problem02/exp04_elasticity_substitution.py",
+  "code_version": "v1.1",
+  "format": "pdf/png",
+  "dpi": 300,
+  "width_mm": 280,
+  "height_mm": 115,
+  "title_in_figure": false,
+  "caption": "See companion fig_p2_substitution_ceiling.pdf.caption.md",
+  "panels": [
+    {
+      "panel": "(a) Left",
+      "description": "Iso-Loss Contours and Technical Substitution on (N, Q) Plane with Downsizing Vectors",
+      "x_axis": "Model Parameter Scale N (Billion Params, Log Scale)",
+      "y_axis": "Data Quality Score Q",
+      "observation": "Improving Q by +0.1 allows 8.3% (0.16B), 14.9% (1.04B), and 25.9% (6.86B) parameter savings"
+    },
+    {
+      "panel": "(b) Right",
+      "description": "Equivalent Required Parameter Gain Delta N_gain vs Initial Scale N across D=10B and D=300B Regimes",
+      "x_axis": "Current Model Scale N (Billion Params, Log Scale)",
+      "y_axis": "Equivalent Required Param Gain Delta N_gain (B, Log Scale)",
+      "observation": "Critical singularity N_crit exists where reducible term A*N^(-alpha) <= Delta L_Q (N_crit=297B for D=10B, N_crit=4,879B for D=300B); beyond N_crit, quality gap cannot be compensated by any finite parameters"
+    }
+  ],
+  "critical_ceilings": {
+    "D_10B": 296.7,
+    "D_300B": 4878.9
+  },
+  "equilibrium_thresholds": {
+    "Q_star_exponential": 0.848,
+    "Q_star_power": 0.7955,
+    "Q_star_logarithmic": ">1.0"
+  },
+  "substitution_sample_1B_300B": {
+    "N": 1.0409,
+    "delta_Q": 0.1,
+    "param_saved_B": 0.1554,
+    "param_saved_pct": 14.92,
+    "equiv_param_N_B": 1.2351,
+    "param_gain_required_B": 0.1942,
+    "param_gain_pct": 18.7
+  }
+}

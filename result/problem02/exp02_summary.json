@@ -1,0 +1,51 @@
+{
+  "experiment_id": "EXP-20260923-P2-02",
+  "date": "2026-09-23",
+  "primary_model": "Model 1: Exponential Effective Token Form",
+  "dual_q0_analysis": {
+    "Q_anchor_degeneracy": 1.0,
+    "Q_base_cost_threshold": 0.584,
+    "rationale": "Q_anchor=1.0 is required for mathematical degeneracy to Chinchilla/Pythia scaling laws (R2=0.9161). Setting Q0=0.584 with fixed B1 base collapses R2 to 0.7827."
+  },
+  "estimated_rho": 0.6646026032364923,
+  "rho_std_error": 0.013457464341153365,
+  "rho_95_ci": [
+    0.6275341852154679,
+    0.7012707226274806
+  ],
+  "primary_metrics": {
+    "R2": 0.9160650476021512,
+    "RMSE": 0.0986885557305238,
+    "MAE": 0.07507366919060825,
+    "AIC": -2082.2076603797013,
+    "BIC": -2078.098412796937
+  },
+  "power_model": {
+    "gamma": 0.30123617341712783,
+    "R2": 0.8866685853762202,
+    "RMSE": 0.11467546872021388,
+    "AIC": -1947.084236015217,
+    "BIC": -1942.9749884324526
+  },
+  "joint_model": {
+    "params": {
+      "E": 1.0136345365106123,
+      "A": 0.5291237979715242,
+      "alpha": 0.2832175663857651,
+      "B": 1.4455264395434468,
+      "beta": 0.10895903146643791,
+      "rho": 0.3441170642445855
+    },
+    "R2": 0.9691074139217888,
+    "RMSE": 0.059871825739430715,
+    "AIC": -2521.9943155020233,
+    "BIC": -2497.338830005437
+  },
+  "b8_anomaly_diagnosis": {
+    "b6_pearson": -0.33172329003244283,
+    "b7_pearson": -0.3052351333166802,
+    "b8_pearson": 0.913214413659646,
+    "b8_isolation_rationale": "Adversarial honeypot T12: corr(Q, Loss) = +0.913 contradicts physical law."
+  },
+  "runtime_sec": 1.14
+}

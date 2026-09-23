@@ -1,0 +1,6 @@
+﻿parameter,estimate,std_error,ci_95_lower,ci_95_upper,unit,description
+E,1.6898,5e-05,1.68965,1.68995,Nats,不可约损失下限 E
+A,0.35398,4e-05,0.35385,0.35413,Nats*unit^pow,模型规模系数 A
+alpha,0.33998,3e-05,0.33984,0.34011,dimensionless,模型规模幂指数 alpha
+B,1.24031,4e-05,1.24015,1.24043,Nats*unit^pow,数据量系数 B
+beta,0.27988,1e-05,0.27983,0.27994,dimensionless,数据量幂指数 beta

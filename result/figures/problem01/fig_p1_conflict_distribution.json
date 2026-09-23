@@ -1,0 +1,17 @@
+{
+  "figure_id": "F01B_problem-01_conflict_distribution",
+  "experiment_id": "EXP-20260923-05",
+  "problem": "problem-01",
+  "model_version": "M1-v3",
+  "source_data": "A1, A2, A3 v1",
+  "script": "src/problem01/exp05_final_closure.py",
+  "code_version": "82f75b73ce00b78e3150ad2b047f7767b0e226726c5c96644d1a9e8a8f53fd55",
+  "format": "png/pdf",
+  "dpi": 600,
+  "width_mm": 170,
+  "height_mm": 78,
+  "title_in_figure": false,
+  "caption_file": "fig_p1_conflict_distribution.caption.md",
+  "caption": "Distribution of the four semantic conflict classes in the sample and extended datasets.",
+  "notes": "Each horizontal bar is normalized within a dataset; categories are defined by M1-EQ19."
+}

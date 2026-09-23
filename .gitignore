@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments & Tooling
+.workbuddy/
+.docx_review/
+.venv/
+venv/
+env/
+.idea/
+.vscode/
+
+# Temporary / Scratch
+scratch/
+scratch_*
+*.tmp
+
+# Large files exceeding GitHub 100MB limit (GitHub Hard Limit)
+data/real_attachments/A_data_value/regmix_domain_sample.jsonl.xz
+
+# Optional: Uncomment below if you prefer keeping the GitHub repo lightweight (excluding ~300MB raw web crawl JSONL archives)
+# data/real_attachments/**/*.jsonl.xz
+# data/real_attachments/C_efficiency_evolution/detailed_results/
