@@ -2,7 +2,7 @@
 """Audit diagnostics for the 2026-09-24 handover, items T01-T02, T06 and T08.
 
 Reads frozen result tables and refits the Problem-4 frontier on the same
-sample definition as exp05. Writes only under result/audit_20260924/.
+sample definition as exp05. Writes only under review/audit_20260924/.
 Does not overwrite result/problem0*/ or result/tables/problem0*/.
 """
 import hashlib
@@ -26,7 +26,7 @@ from problem04.p4_common import (  # noqa: E402
 )
 from problem03.p3_common import solve_optimal_allocation_2d  # noqa: E402
 
-OUT = os.path.join(ROOT, "result", "audit_20260924")
+OUT = os.path.join(ROOT, "review", "audit_20260924")
 os.makedirs(OUT, exist_ok=True)
 SEED = 20260924
 GIT_HEAD = "f9e61755f72b3f8b040d36000ea9f4ebbf1b9305"
