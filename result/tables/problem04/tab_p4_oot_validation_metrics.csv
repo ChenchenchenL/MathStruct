@@ -1,5 +1,5 @@
-Specification,Sample_Count,Scale_Elasticity_b,Chat_Lift_v,OOT_MAE,CI95_Coverage_Pct
-"Baseline (Open Research License, Submission Date)",868,0.2174,0.2067,12.86,66.7
-Strict Commercial Only (Apache/MIT),480,0.2219,0.2698,13.5,92.5
-Sensitivity: Publication Date Axis (C4),868,0.1994,0.2085,13.89,91.0
-Appendix: C3 Long-Window (2019-2025) Comparable Subset,4582,0.2315,0.198,14.4,89.0
+Specification,Sample_Count,Scale_Elasticity_b,Chat_Lift_v,OOT_MAE,CI95_Coverage_Pct,OOT_status
+"Baseline (Open Research License, Submission Date)",868,0.2174,0.2067,12.86,66.7,computed_on_6_test_months
+Strict Commercial Only (Apache/MIT),480,0.2219,0.2698,,,not_computed_coefficients_only
+Sensitivity: Publication Date Axis (C4),868,0.1994,0.2085,,,not_computed_coefficients_only
+Appendix: C3 Long-Window (2019-2025) Comparable Subset,4582,,,,,"row_count_only_elasticity_and_coverage_were_placeholders"

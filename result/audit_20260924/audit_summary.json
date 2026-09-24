@@ -1,0 +1,116 @@
+{
+  "audit_id": "AUDIT-20260924-T01-T10",
+  "git_head": "f9e61755f72b3f8b040d36000ea9f4ebbf1b9305",
+  "seed": 20260924,
+  "runtime_s": 4.93,
+  "did_not_overwrite_original_experiments": true,
+  "t01": {
+    "split_date": "2024-10-01",
+    "train_rows": 410,
+    "test_rows": 458,
+    "evaluated_months": 6,
+    "sfa_mae": 12.858322619346074,
+    "persistence_mae": 2.812383504529039,
+    "flat_last_train_month_level": 46.59714569921449,
+    "flat_mae": 2.2270714879759503,
+    "train_endpoint_slope_points_per_month": 1.0010277451788454,
+    "train_trend_mae": 4.7290846011094985,
+    "coverage_95_pct": 66.66666666666666,
+    "coverage_80_pct": 33.33333333333333,
+    "published_exp05_mae": 12.858322619346074,
+    "published_exp05_coverage_95": 66.66666666666666,
+    "published_exp05_coverage_80": 33.33333333333333,
+    "what_12_24m_can_support": "Six test months only. The refit MAE and coverage are descriptive of this split. They do not validate a 12- or 24-month maximum-score forecast."
+  },
+  "t02": {
+    "definition_kept": "SFA conditional-expectation frontier at the month-90th-percentile compute, chat regime. Not the maximum of models that still exist, and not the maximum among models first released that month.",
+    "origin_compute_FLOP_p90": 7.8e+24,
+    "origin_chat_frontier": 42.60240011907787,
+    "published_origin": 42.6,
+    "technology_slope_as_coded_per_month": -0.06049984780997809,
+    "technology_slope_if_divided_by_two": -0.09074977171496713,
+    "slope_bug": "predict_frontier divides a two-month technology change by 3. The audit does not patch it; the published decline uses the coded divisor.",
+    "decomposition": [
+      {
+        "horizon_months": 12,
+        "origin_chat_frontier": 42.60240011907787,
+        "forecast_chat_frontier": 35.91015032131244,
+        "change_from_origin": -6.692249797765427,
+        "scale_only_frontier": 49.422447917017195,
+        "scale_only_change": 6.820047797939324,
+        "tech_state_only_frontier": 29.854108039810278,
+        "tech_state_only_change": -12.748292079267593,
+        "published_scenario1_chat": 35.91
+      },
+      {
+        "horizon_months": 24,
+        "origin_chat_frontier": 42.60240011907787,
+        "forecast_chat_frontier": 35.32450533622967,
+        "change_from_origin": -7.2778947828482,
+        "scale_only_frontier": 56.264057504262645,
+        "scale_only_change": 13.661657385184775,
+        "tech_state_only_frontier": 23.96165293531985,
+        "tech_state_only_change": -18.64074718375802,
+        "published_scenario1_chat": 35.32
+      }
+    ],
+    "sfa_sigma_e": 0.3086737583688428,
+    "sfa_sigma_d": 0.8081035065119996,
+    "sfa_b": 0.21735565689235012
+  },
+  "t05": {
+    "c6_n": 75,
+    "c6_val_loss_min": 1.65,
+    "c6_val_loss_max": 2.84,
+    "path_b_loss_min_saved": 1.798,
+    "path_b_loss_max_saved": 1.8494,
+    "path_b_inside_c6_range": true,
+    "path_b_budget_definition": "C4 training FLOPs divided by 1e18, then passed to the Problem-3 budget that also prices attention and quality. Not a like-for-like training-FLOP constraint.",
+    "multiplier_0.9602": "Hard-coded scenario value. No script in this audit recomputes it from a frozen recipe."
+  },
+  "t06": [
+    {
+      "scale": "10B",
+      "predictor": "OLS_ALR_fit_on_all_A4_A5",
+      "target": "estimated_mean_pile_loss",
+      "target_nature": "extrapolated_table_not_observed_training",
+      "n": 63,
+      "spearman_rho": -0.5157,
+      "tree_model_used": false
+    },
+    {
+      "scale": "70B",
+      "predictor": "OLS_ALR_fit_on_all_A4_A5",
+      "target": "estimated_mean_pile_loss",
+      "target_nature": "extrapolated_table_not_observed_training",
+      "n": 63,
+      "spearman_rho": -0.5684,
+      "tree_model_used": false
+    },
+    {
+      "scale": "1M_A4A5_cv",
+      "predictor": "HistGB",
+      "target": "observed_mean_pile_loss",
+      "target_nature": "cross_validated_on_training_table",
+      "n": 512,
+      "spearman_rho": null,
+      "r2": 0.7140645629131498,
+      "tree_model_used": true
+    }
+  ],
+  "t08": {
+    "source_table": "result/tables/problem01/table_p1_domain_q_a1.csv",
+    "source_sha256": "cf62341c585621ce81aea546751fdc55e69a57c043c147b152e5bc6fa8ec362b",
+    "seven_domain_count_weighted_median": 0.49377568915187203,
+    "cc_c4_count_weighted_median_of_domain_medians": 0.5784220454502674,
+    "cc_median": 0.6497837500213604,
+    "c4_median": 0.509629362243734,
+    "cc_count": 9640,
+    "c4_count": 10000,
+    "documented_q_base": 0.584,
+    "difference_documented_minus_recomputed_cc_c4": 0.005577954549732533,
+    "status": "0.584 is not recovered from the frozen domain-median table. Pooled median of the raw CC and C4 rows was not recomputed. Treat 0.584 as a scenario setting, not an estimate.",
+    "p1_q_versus_p2_q": "Problem-1 domain medians and Problem-2 Q are different scales. The weighted seven-domain value is logged by Problem 2 and not consumed by the scaling law. No equality mapping is introduced."
+  },
+  "t08_direction_unchanged_in_9_spot_solves": true
+}

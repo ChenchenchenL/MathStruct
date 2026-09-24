@@ -210,8 +210,9 @@ def run_exp05():
             'Sample_Count': int(strict_mask.sum()),
             'Scale_Elasticity_b': round(float(sfa_strict.coef_['b']), 4),
             'Chat_Lift_v': round(float(sfa_strict.coef_['v_chat']), 4),
-            'OOT_MAE': round(oot_mae * 1.05, 2),
-            'CI95_Coverage_Pct': 92.5
+            'OOT_MAE': None,
+            'CI95_Coverage_Pct': None,
+            'OOT_note': 'not recomputed on this specification; do not reuse the baseline coverage'
         })
 
     # 敏感性 2: 替换为 C4 发布日期 (Publication Date)
@@ -225,8 +226,9 @@ def run_exp05():
         'Sample_Count': len(df_sfa_pub),
         'Scale_Elasticity_b': round(float(sfa_pub.coef_['b']), 4),
         'Chat_Lift_v': round(float(sfa_pub.coef_['v_chat']), 4),
-        'OOT_MAE': round(oot_mae * 1.08, 2),
-        'CI95_Coverage_Pct': 91.0
+        'OOT_MAE': None,
+        'CI95_Coverage_Pct': None,
+        'OOT_note': 'publication-date fit only; monthly coverage was not evaluated'
     })
 
     # 敏感性 3: C3 历史长窗口 (2019-2025) 追溯评测子样本对照 (P2-14)
@@ -237,10 +239,11 @@ def run_exp05():
     sens_records.append({
         'Specification': 'Appendix: C3 Long-Window (2019-2025) Comparable Subset',
         'Sample_Count': len(c3_valid),
-        'Scale_Elasticity_b': 0.2315,
-        'Chat_Lift_v': 0.1980,
-        'OOT_MAE': round(oot_mae * 1.12, 2),
-        'CI95_Coverage_Pct': 89.0
+        'Scale_Elasticity_b': None,
+        'Chat_Lift_v': None,
+        'OOT_MAE': None,
+        'CI95_Coverage_Pct': None,
+        'OOT_note': 'row count of the C3 subset only; elasticity and coverage were not estimated'
     })
 
     df_sens = pd.DataFrame(sens_records)
@@ -311,11 +314,10 @@ def run_exp05():
         "# 图 4-5：多层级不确定性误差传递带与时间外滚动回测检验\n\n"
         "**图面说明**：左图展示基于 1000 次族群聚类 Bootstrap 全链路传递参数误差、度量噪声、桥接外推残差与宏观情景扰动后，"
         "未来 24 个月开源大模型能力前沿的 80%（深色带）与 95%（浅色带）置信区间。"
-        "在情景一（历史动量）下，24 个月后前沿 95% 置信区间为 [58.2, 68.5] 分；"
-        "在算力停滞的极端情景下，前沿 95% 置信区间收缩至 [52.8, 57.4] 分，量化了宏观算力放缓对大模型演进上限的实质性压制。\n\n"
-        "右图展示以 2024 年 10 月 1 日为历史截断点的滚动时间外（OOT）回测检验残差。"
-        "5 个月测试期的月度前沿实际值全部落在理论 95% 误差带之内（实测覆盖率 100%），"
-        "平均绝对误差仅 1.15 分，证实模型具备优异的抗过拟合与外推泛化能力。\n\n"
+        "区间数值以 tab_p4_bootstrap_uncertainty_summary.csv 为准；情景一 24 个月的 95% 区间为 [5.42, 81.67]，"
+        "情景三为 [3.17, 72.58]。区间很宽，只说明预测不确定。\n\n"
+        "右图展示以 2024 年 10 月 1 日为截断点的时间外残差。可评价月份为 6 个，"
+        "平均绝对误差为 12.86 分，95% 区间覆盖 4/6。该检验未通过，不能作为泛化能力证据。\n\n"
         "**方法与公式**：依据 M4-EQ11 多层级误差传播与滚动 OOT 规程；代码 `src/problem04/exp05_uncertainty_oot_validation.py`；实验 ID `EXP-405`。"
     )
     with open(fig5_pdf + ".caption.md", 'w', encoding='utf-8') as f:
@@ -348,10 +350,7 @@ def run_exp05():
             "scenario_2_12m_ci95": [float(df_ci_summary.loc[2, 'CI95_Lower']), float(df_ci_summary.loc[2, 'CI95_Upper'])],
             "scenario_2_24m_ci95": [float(df_ci_summary.loc[3, 'CI95_Lower']), float(df_ci_summary.loc[3, 'CI95_Upper'])],
             "scenario_3_12m_ci95": [float(df_ci_summary.loc[4, 'CI95_Lower']), float(df_ci_summary.loc[4, 'CI95_Upper'])],
-            "scenario_3_24m_ci95": [float(df_ci_summary.loc[5, 'CI95_Lower']), float(df_ci_summary.loc[5, 'CI95_Upper'])],
-            "sensitivity_commercial_coverage_95_pct": 92.5,
-            "sensitivity_pub_date_coverage_95_pct": 91.0,
-            "sensitivity_c3_long_window_coverage_95_pct": 89.0
+            "scenario_3_24m_ci95": [float(df_ci_summary.loc[5, 'CI95_Lower']), float(df_ci_summary.loc[5, 'CI95_Upper'])]
         }, f, indent=2, ensure_ascii=False)
     print("  -> 已导出 exp05_summary.json 到 result/problem04/")
 

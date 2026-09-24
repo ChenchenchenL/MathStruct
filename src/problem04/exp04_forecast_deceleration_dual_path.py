@@ -129,8 +129,9 @@ def run_exp04():
                 cost_type='exp',
                 L_ctx=2048,
                 p_multiplier=0.9602,  # 继承自问题三 Fixed_p_opt 情景（跨数据源迁移假设下的名义校准值）
-                verify_global=False   # 共 24月×3情景=72 次调用，关闭差分进化以控制计算开销；
-                                      # 多起点 L-BFGS-B（50×5=250 起点）与 DE 的目标函数残差 <1e-5（见 P3 自测）
+                verify_global=False   # 共 24月×3情景=72 次调用，关闭差分进化。
+                                      # 局部搜索是 10×5=50 个 (ln n, Q) 网格起点，另加 Q 上下界两条一维搜索；
+                                      # 不是 250 个起点。关闭全局搜索后，这些解只是多起点局部搜索结果。
             )
             L_opt_q3 = q3_res['opt_loss']
             

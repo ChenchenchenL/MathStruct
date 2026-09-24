@@ -1,0 +1,53 @@
+{
+  "git_head_at_audit_start": "f9e61755f72b3f8b040d36000ea9f4ebbf1b9305",
+  "old_logs_reconstructed": false,
+  "problem01": [
+    {
+      "script": "src/problem01/exp01_quality.py",
+      "claimed_sha256": "9f6f5ce3e6293599d8cc7607553234a2da51b5cdf8c5d3032acc02020761eb06",
+      "head_blob": "37de6f1b1dc58df01a3d3268dacf2a064b058c00",
+      "working_tree_sha256": "9f6f5ce3e6293599d8cc7607553234a2da51b5cdf8c5d3032acc02020761eb06",
+      "claimed_matches_head_worktree_before_this_audit": true,
+      "log": "none recovered",
+      "status": "traceable_to_recorded_hash"
+    },
+    {
+      "script": "src/problem01/exp02_mixture.py",
+      "claimed_sha256": "bc02b5b09b3e1f3bbd7096aecfce4854a176542e47c8d657618d89b68e3d5ec0",
+      "head_blob": "49585b8ea934ba431003a23ece6f21fc0648d391",
+      "working_tree_sha256": "34a68f17d68427584305f9d36e5a5a2be50b75eeb7a45d4f6fb5db8ae7064e76",
+      "claimed_matches_head_worktree_before_this_audit": false,
+      "log": "none recovered",
+      "status": "recorded_hash_not_in_git_history"
+    },
+    {
+      "script": "src/problem01/exp03_quality_close.py",
+      "claimed_sha256": "071efabb3f422fb4121b3ef03ecfc63c377f022f2005f850720064b832fca1cc",
+      "head_blob": "d2214d9c30b6b96b51ad2750004bd23b377b5fd1",
+      "working_tree_sha256": "071efabb3f422fb4121b3ef03ecfc63c377f022f2005f850720064b832fca1cc",
+      "claimed_matches_head_worktree_before_this_audit": true,
+      "log": "none recovered",
+      "status": "traceable_to_recorded_hash"
+    },
+    {
+      "script": "src/problem01/exp04_validation.py",
+      "claimed_sha256": "b136f1f86ec1ef899d69c1fa2e7aab4d233ef63bbd6a6f406bb42e039d0982e9",
+      "head_blob": "fe5cf71260a1629b77be461d28419dfdce7c6c7c",
+      "working_tree_sha256": "b136f1f86ec1ef899d69c1fa2e7aab4d233ef63bbd6a6f406bb42e039d0982e9",
+      "claimed_matches_head_worktree_before_this_audit": true,
+      "log": "none recovered",
+      "status": "traceable_to_recorded_hash"
+    },
+    {
+      "script": "src/problem01/exp05_final_closure.py",
+      "claimed_sha256": "82f75b73ce00b78e3150ad2b047f7767b0e226726c5c96644d1a9e8a8f53fd55",
+      "head_blob": "0a8b9ea2e1579e3044f6e51a1bbde1a98016fa16",
+      "working_tree_sha256": "e82dfeac3351f0dd73cb212714c61db7326426957de3cded3b1a63c09f7c01da",
+      "claimed_matches_head_worktree_before_this_audit": false,
+      "log": "none recovered",
+      "status": "recorded_hash_not_in_git_history"
+    }
+  ],
+  "problem02_03_04_recorded_script_hash": "absent",
+  "exp04_summary_interval_fields": "present in result/problem04/exp04_summary.json; not written by src/problem04/exp04_forecast_deceleration_dual_path.py"
+}

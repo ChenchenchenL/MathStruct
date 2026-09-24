@@ -1,0 +1,62 @@
+[
+  {
+    "file": "audit_summary.json",
+    "bytes": 5129,
+    "sha256": "50452dc8126feddfa0de096fbe78b888214fcac27c9fcd707f64ba3abb50ab25"
+  },
+  {
+    "file": "file_hashes.json",
+    "bytes": 30360,
+    "sha256": "f5f8b2760645cfc17e8f07a9676bd9a3a259836f32702489e67fbfdb14683c37"
+  },
+  {
+    "file": "README.md",
+    "bytes": 5729,
+    "sha256": "13d97dee77961b1afe815bd7624da799d7f635ee84a374caaa267c607865f44b"
+  },
+  {
+    "file": "run.log",
+    "bytes": 2019,
+    "sha256": "66def85b2007e9a7a97195065756041bdb69c468b8d195ab18ac2c4b6489e184"
+  },
+  {
+    "file": "t01_oot_baselines.csv",
+    "bytes": 1053,
+    "sha256": "66a4b46d117fed88f629c541e83c4da4825857ecb7cdf3a83c0c5ec1000c02ac"
+  },
+  {
+    "file": "t01_oot_monthly.csv",
+    "bytes": 2501,
+    "sha256": "12253a8f6e2902136eed5699e23bacd4bc1c03f88de5bddf91356e3871bcc5ec"
+  },
+  {
+    "file": "t02_decline_decomposition.csv",
+    "bytes": 469,
+    "sha256": "d776873e7fc3414e8242c5215704f71906b6d3a4143bee88e4563d619b35fc23"
+  },
+  {
+    "file": "t02_fitted_technology_state.csv",
+    "bytes": 340,
+    "sha256": "643927691412fa6de8e323b9649b05aa9ee327dcee859e6fc1822a02801074da"
+  },
+  {
+    "file": "t04_version_status.json",
+    "bytes": 2690,
+    "sha256": "0ef67b5bf4f8f08a52d9ebe123fade84c2e1a26827cad62a774f499f9a2c4319"
+  },
+  {
+    "file": "t06_rank_by_predictor.csv",
+    "bytes": 406,
+    "sha256": "9befa1380aa7b3377e8631e0448959e211124ebff5fdcaa1e3f8f30e1aba459a"
+  },
+  {
+    "file": "t08_q_regime_from_saved_allocation.csv",
+    "bytes": 932,
+    "sha256": "f398d7062b6facf10038988b5c98d2656e4addceee07b201154ec38612c4e641"
+  },
+  {
+    "file": "t08_qbase_spot_rerun_p0.csv",
+    "bytes": 867,
+    "sha256": "2067a983eb0c8c2ce47085b821d47e74b230c963160274640c145b22d160c165"
+  }
+]

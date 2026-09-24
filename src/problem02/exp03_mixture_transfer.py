@@ -38,15 +38,15 @@ print("=" * 70)
 # ──────────────────────────────────────────────────────────────────────────────
 _p1_q = load_p1_quality_table()
 Q0_FROM_P1 = _p1_q['Q0']
-print(f"[P1→P2] Q0 锚点来源: {_p1_q['source']}")
-print(f"[P1→P2] Q0 (样本量加权均值) = {Q0_FROM_P1:.6f}  "
-      f"({'7域均值: ' + ', '.join(f'{k}={v:.3f}' for k, v in list(_p1_q['domain_q'].items())[:3]) + '...' if _p1_q['domain_q'] else '使用 fallback'})")
+# 这里只核对问题一导出的域级质量表。Q0_FROM_P1 不进入 f(p)、R(p) 或标度律：
+# A 组域级质量分与 B 组质量变量不是同一标尺，本实验不把二者等同。
+print(f"[P1→P2] 域级质量表来源: {_p1_q['source']}；仅记录，不入模")
+print(f"[P1→P2] 七域样本量加权中位数 = {Q0_FROM_P1:.6f}；"
+      "未用作本实验的 Q0，也未换算为 B 组质量")
 
 
 # 1. 从附件 A RegMix 原始数据训练混合响应模型 f(p)
-# 注：Q0 锚点已由上方 P1→P2 接口从 table_p1_domain_q_a1.csv 读取（见 Q0_FROM_P1）。
-#     此处 regmix_tables 用于拟合 17域配比与验证损失之间的 HistGB 模型 f(p)，
-#     该模型对象未由第一问导出，因此仍从原始数据重新训练。
+# 配比响应没有消费问题一冻结的模型或预处理器，仍在 A4/A5 上重新拟合。
 BASE_REGMIX = os.path.join(DIR_A, "regmix_tables")
 DOMAINS17 = ["arxiv", "freelaw", "nih_exporter", "pubmed_central", "wikipedia_en",
              "dm_mathematics", "github", "philpapers", "stackexchange",

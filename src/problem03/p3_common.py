@@ -18,7 +18,8 @@ from typing import Dict, Tuple, Optional, Any
 ETA = 2.0e-4          # Attention FLOPs coefficient: C_attn = eta * N * D * L_ctx
 L_CTX_CRIT = 30000    # Theoretical critical window where C_attn = C_train = 6*N*D (Tokens)
 
-# Baseline quality score (median of uncleaned Pile crawl from Attachment A1)
+# Scenario floor for incremental cleaning cost. Documented as 0.584, but the
+# frozen CC/C4 domain medians recompute to 0.5784. Not an estimated parameter.
 Q_BASE = 0.584        
 Q_ANCHOR = 1.000      # Ideal perfect quality degradation anchor in generalized scaling law
 
@@ -271,7 +272,11 @@ def solve_optimal_allocation_2d(C_bar: float, cost_type: str = 'exp',
                                 verify_global: bool = True) -> Dict[str, Any]:
     """
     Solves for (n*, d*, Q*) minimizing Loss subject to compute budget C_bar.
-    Uses multi-start L-BFGS-B across 50 log-spaced grid points, optionally dual-verified by Differential Evolution.
+    Uses multi-start L-BFGS-B on a 10-by-5 grid in (ln n, Q), plus two
+    one-dimensional boundary searches at Q_BASE and Q=1. That is 50 interior
+    starts, not 250. Differential Evolution is optional and, when enabled,
+    uses popsize=15 and maxiter=500. A returned point is a numerical search
+    result, not a proved global optimum.
     """
     # Define bounds on u = ln(n) and Q
     u_min, u_max = np.log(N_MIN), np.log(N_MAX)

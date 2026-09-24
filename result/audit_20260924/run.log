@@ -1,0 +1,30 @@
+audit_20260924 start
+git_head=f9e61755f72b3f8b040d36000ea9f4ebbf1b9305
+seed=20260924
+T08 cc+c4 weighted median-of-medians=0.578422; documented 0.584
+T08 saved q regimes:
+budget_tier cost_function          q_regime  n
+       high           exp Boundary_Upper_Q1  2
+       high           log Boundary_Upper_Q1  2
+       high           pow Boundary_Upper_Q1  2
+        low           exp          Interior  2
+        low           log Boundary_Upper_Q1  2
+        low           pow Boundary_Lower_Q0  2
+        mid           exp Boundary_Upper_Q1  2
+        mid           log Boundary_Upper_Q1  2
+        mid           pow Boundary_Upper_Q1  2
+  spot low/exp: saved Interior -> rerun Interior
+  spot low/pow: saved Boundary_Lower_Q0 -> rerun Boundary_Lower_Q0
+  spot low/log: saved Boundary_Upper_Q1 -> rerun Boundary_Upper_Q1
+  spot mid/exp: saved Boundary_Upper_Q1 -> rerun Boundary_Upper_Q1
+  spot mid/pow: saved Boundary_Upper_Q1 -> rerun Boundary_Upper_Q1
+  spot mid/log: saved Boundary_Upper_Q1 -> rerun Boundary_Upper_Q1
+  spot high/exp: saved Boundary_Upper_Q1 -> rerun Boundary_Upper_Q1
+  spot high/pow: saved Boundary_Upper_Q1 -> rerun Boundary_Upper_Q1
+  spot high/log: saved Boundary_Upper_Q1 -> rerun Boundary_Upper_Q1
+T01 train=410 test=458 pool=868
+T01 months=6 SFA MAE=12.86 persist=2.81 flat=2.23 trend=4.73 cov95=66.7
+T02 origin=42.60 code_slope=-0.060500 two_step_slope=-0.090750
+ horizon_months  origin_chat_frontier  forecast_chat_frontier  change_from_origin  scale_only_frontier  scale_only_change  tech_state_only_frontier  tech_state_only_change  published_scenario1_chat
+             12               42.6024               35.910150           -6.692250            49.422448           6.820048                 29.854108              -12.748292                     35.91
+             24               42.6024               35.324505           -7.277895            56.264058          13.661657                 23.961653              -18.640747                     35.32

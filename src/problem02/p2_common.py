@@ -37,8 +37,11 @@ os.makedirs(OUT_TABS, exist_ok=True)
 # ==============================================================================
 
 def load_p1_quality_table(fallback_q0: float = 0.584) -> dict:
-    """从第一问导出的 table_p1_domain_q_a1.csv 读取各域质量分，
-    计算样本量加权均值作为 Q0 锚点。
+    """Read Problem-1 domain medians and their count-weighted mean.
+
+    The returned Q0 is a log of that table. It is not the Problem-2 quality
+    variable and is not a calibrated crosswalk. fallback_q0 is used only when
+    the file is absent; 0.584 is not recovered from the current table.
 
     接口文件路径: result/tables/problem01/table_p1_domain_q_a1.csv
     （由 src/problem01/exp05_final_closure.py 写出，

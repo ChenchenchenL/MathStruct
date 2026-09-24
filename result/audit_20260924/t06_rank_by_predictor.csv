@@ -1,0 +1,4 @@
+scale,predictor,target,target_nature,n,spearman_rho,tree_model_used,r2
+10B,OLS_ALR_fit_on_all_A4_A5,estimated_mean_pile_loss,extrapolated_table_not_observed_training,63,-0.5157,False,
+70B,OLS_ALR_fit_on_all_A4_A5,estimated_mean_pile_loss,extrapolated_table_not_observed_training,63,-0.5684,False,
+1M_A4A5_cv,HistGB,observed_mean_pile_loss,cross_validated_on_training_table,512,,True,0.7140645629131498

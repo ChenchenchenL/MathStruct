@@ -101,5 +101,5 @@
 | **EXP-402** | `src/problem04/exp02_loss_benchmark_bridge.py` | 2026-09-23 | N/A (凸优化) | 分层加权非线性最小二乘 (100% 收敛) | Average $r=-0.5100 (p=2.95\times 10^{-6}), \rho=-0.5491, b=1.5367$; 6 科目 $b>0$; LOFOCV MAE=8.16 分 | `result/problem04/exp02_summary.json` |
 | **EXP-403** | `src/problem04/exp03_dynamic_frontier_shapley.py` | 2026-09-23 | 42 | SFA 极大似然估计 (L-BFGS-B, 100% 收敛) | $\beta_C=+0.2174, v_{\text{chat}}=+0.2067, \gamma=87.3\%$; Chat Shapley: 规模 83.3% (+4.93分), 技术 16.7% (+0.99分) | `result/problem04/exp03_summary.json` |
 | **EXP-404** | `src/problem04/exp04_forecast_deceleration_dual_path.py` | 2026-09-23 | 42 | 几何增速外推 + 问题三 2D KKT 联立求解 (100% 收敛) | $g_C=1.2652$/yr; +12m Chat: 35.91/32.81/29.85; +24m: 35.32/29.32/23.96; $\Delta_{\text{dual}} \in [0.43, 10.64]$ | `result/problem04/exp04_summary.json` |
-| **EXP-405** | `src/problem04/exp05_uncertainty_oot_validation.py` | 2026-09-23 | 42 | 族群聚类 Bootstrap (1000次, 100% 收敛) + 滚动 OOT | 收敛率 100.0%; OOT MAE=12.86 分; 基准覆盖率 66.7%, 敏感性覆盖率 89.0%~92.5%; 情景一 24m 95% CI=[5.42, 81.67] | `result/problem04/exp05_summary.json` |
+| **EXP-405** | `src/problem04/exp05_uncertainty_oot_validation.py` | 2026-09-23 | 42 | 族群聚类 Bootstrap (1000次, 100% 收敛) + 滚动 OOT | 收敛率 100.0%; 6 个测试月 MAE=12.86 分; 95% 覆盖 4/6。89.0%–92.5% 是未计算占位符，不得引用。情景一 24 个月区间 [5.42, 81.67] 只说明不确定 | `result/problem04/exp05_summary.json` |
 

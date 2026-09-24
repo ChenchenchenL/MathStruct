@@ -1,0 +1,10 @@
+budget_tier,cost_function,saved_Q,saved_regime,rerun_Q_bound_0.584,rerun_regime,rerun_loss,de_verified,direction_same_as_saved
+low,exp,0.6907,Interior,0.6906819514798557,Interior,3.2105467454487027,True,True
+low,pow,0.584,Boundary_Lower_Q0,0.584,Boundary_Lower_Q0,3.2133186928509225,True,True
+low,log,1.0,Boundary_Upper_Q1,1.0,Boundary_Upper_Q1,3.09665798876018,True,True
+mid,exp,1.0,Boundary_Upper_Q1,1.0,Boundary_Upper_Q1,2.150568081091987,True,True
+mid,pow,1.0,Boundary_Upper_Q1,1.0,Boundary_Upper_Q1,2.151885575026747,True,True
+mid,log,1.0,Boundary_Upper_Q1,1.0,Boundary_Upper_Q1,2.145168354063526,True,True
+high,exp,1.0,Boundary_Upper_Q1,1.0,Boundary_Upper_Q1,1.913852544300587,True,True
+high,pow,1.0,Boundary_Upper_Q1,1.0,Boundary_Upper_Q1,1.9139460581405714,True,True
+high,log,1.0,Boundary_Upper_Q1,1.0,Boundary_Upper_Q1,1.9134898143344135,True,True
