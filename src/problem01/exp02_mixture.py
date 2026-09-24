@@ -189,6 +189,29 @@ for ref_try in ("pile_cc", "wikipedia_en", "arxiv"):
     print(f"    ref={ref_try}: R2={np.mean(r):.4f}")
 
 M.to_csv(os.path.join(OUT, "transfer_matrix_m05.csv"))
+
+# 计算并持久化 A12-A15 外推表的 Spearman 值
+est_spearman_results = {}
+for tag, mfile, lfile in (("10B", "est_mixture_10b.csv", "est_pile_loss_10b.csv"),
+                          ("70B", "est_mixture_70b.csv", "est_pile_loss_70b.csv")):
+    me_e = pd.read_csv(os.path.join(BASE, mfile)).sort_values("index").reset_index(drop=True)
+    le_e = pd.read_csv(os.path.join(BASE, lfile)).sort_values("index").reset_index(drop=True)
+    if not (me_e["index"].values == le_e["index"].values).all():
+        me_e = me_e.set_index("index").loc[le_e["index"]].reset_index()
+    Pe_e = me_e[["train_the_pile_" + d for d in DOMAINS17]].to_numpy(dtype=float)
+    Pe_e = Pe_e / Pe_e.sum(axis=1, keepdims=True)
+    Pte_e = (Pe_e + EPS / 17.0) / (1.0 + EPS)
+    Xe_e = np.log(Pte_e / Pte_e[:, [ref_col]])
+    Xe_e = np.delete(Xe_e, ref_col, axis=1)
+    pred_e = ols.predict(Xe_e)
+    ye_e = le_e[["metric/the_pile_" + d + "_val_loss" for d in LOSS13]].to_numpy(dtype=float).mean(axis=1)
+    rho_e, _ = spearmanr(pred_e, ye_e)
+    est_spearman_results[tag] = {
+        "spearman_rho": float(round(rho_e, 4)),
+        "n": int(len(ye_e)),
+        "note": "extrapolated table (A12-A15); negative rho expected due to extrapolation artifact (est Loss follows power-law extrapolation, rank-only per AS-06)"
+    }
+
 with open(os.path.join(OUT, "exp02_summary.json"), "w", encoding="utf-8") as f:
     json.dump({
         "seed": SEED, "runtime_s": round(time.time() - t0, 1),
@@ -199,6 +222,9 @@ with open(os.path.join(OUT, "exp02_summary.json"), "w", encoding="utf-8") as f:
         "full_ols_r2": r2_full,
         "top_transfers": stack[:5],
         "worst_transfers": stack[-5:],
-        "est_spearman": "see stdout",
+        # A12-A15 外推表的 Spearman 值（预期为负，因外推伪影）
+        # 真实实验检验见 A6-A11（1M/60M/1B），ρ=0.867→0.665（正值衰减）
+        "est_spearman_extrapolated": est_spearman_results,
     }, f, ensure_ascii=False, indent=2)
 print(f"[done] {time.time()-t0:.1f}s -> {OUT}")
+

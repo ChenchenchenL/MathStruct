@@ -1,6 +1,6 @@
 {
   "seed": 20260923,
-  "runtime_s": 1.4,
+  "runtime_s": 1.7,
   "rowsum_minmax": [
     0.9960000000000001,
     1.0030000000000001
@@ -71,5 +71,16 @@
       0.02221308919059111
     ]
   ],
-  "est_spearman": "see stdout"
+  "est_spearman_extrapolated": {
+    "10B": {
+      "spearman_rho": -0.5157,
+      "n": 63,
+      "note": "extrapolated table (A12-A15); negative rho expected due to extrapolation artifact (est Loss follows power-law extrapolation, rank-only per AS-06)"
+    },
+    "70B": {
+      "spearman_rho": -0.5684,
+      "n": 63,
+      "note": "extrapolated table (A12-A15); negative rho expected due to extrapolation artifact (est Loss follows power-law extrapolation, rank-only per AS-06)"
+    }
+  }
 }

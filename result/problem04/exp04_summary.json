@@ -13,5 +13,44 @@
   "dual_discrepancy_range": [
     0.43,
     10.64
-  ]
+  ],
+  "bootstrap_summary_from_exp405": {
+    "_source": "EXP-405 (exp05_uncertainty_oot_validation.py)",
+    "_note": "Path A 点预测为 SFA 条件期望前沿（已剥离 E[v]=0），Bootstrap 中位数更贴近实际前沿中枢；三口径对应关系详见 docs/problem-04/handoff.md §2.4.1",
+    "scenario_1_12m_bootstrap_ci95": [
+      9.68,
+      71.2
+    ],
+    "scenario_1_24m_bootstrap_ci95": [
+      5.42,
+      81.67
+    ],
+    "scenario_2_12m_bootstrap_ci95": [
+      8.43,
+      68.14
+    ],
+    "scenario_2_24m_bootstrap_ci95": [
+      4.19,
+      76.52
+    ],
+    "scenario_3_12m_bootstrap_ci95": [
+      7.38,
+      65.26
+    ],
+    "scenario_3_24m_bootstrap_ci95": [
+      3.17,
+      72.58
+    ],
+    "oot_coverage_95_pct": 66.66666666666666,
+    "sensitivity_commercial_coverage_95_pct": 92.5,
+    "historical_frontier_sfa_2025_03": 42.6,
+    "historical_single_peak_2025_03": 52.08,
+    "scenario_1_12m_bootstrap_median_approx": 40.82,
+    "three_benchmark_note": {
+      "sfa_conditional_expectation": "35.91 (情景一+12m 点预测，SFA 条件期望，已剥离极值扰动)",
+      "bootstrap_median": "40.82 (1000次Bootstrap重估中位数，贴近实际前沿中枢)",
+      "historical_sfa_frontier": "42.60 (2025-03 SFA包络均值前沿)",
+      "historical_single_peak": "52.08 (2025-03 榜单最高单体，含极值扰动)"
+    }
+  }
 }
