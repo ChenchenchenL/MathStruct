@@ -1,0 +1,37 @@
+{
+  "old_fuzzy_match": {
+    "rows": 868,
+    "unique_compute_values": 78,
+    "months": 6,
+    "model_mae": 9.918270764750014,
+    "persistence_mae": 2.812383504529039,
+    "flat_mae": 2.2270714879759503
+  },
+  "exact_match": {
+    "rows": 249,
+    "unique_compute_values": 54,
+    "months": 6,
+    "model_mae": 9.388142011762191,
+    "persistence_mae": 2.0025666343093653,
+    "flat_mae": 2.976614253414185,
+    "beats_persistence": false
+  },
+  "token_decomposition_exact_match": {
+    "rows_with_positive_tokens": 208,
+    "r2": 0.5135188315303372,
+    "logit_contributions": {
+      "compute": 0.21793380299735254,
+      "tokens": 0.007323786618279371,
+      "time": -0.013041942965283937,
+      "chat": 0.0
+    },
+    "total_logit_change": 0.21221564665034798,
+    "note": "Associational split on exact matches. Not a validated forecast."
+  },
+  "old_style_shapley_on_exact_matches": {
+    "scale_share_pct": 41.38281558019599,
+    "tech_share_pct": 58.617184408329194,
+    "scale_points": 3.6064027073255964,
+    "tech_points": 5.108332277109913
+  }
+}

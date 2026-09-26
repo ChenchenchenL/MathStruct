@@ -1,0 +1,33 @@
+{
+  "identified_rows": 126,
+  "official_bridge": 81,
+  "unique_name": 45,
+  "final_cumulative_best": 46.88867299768722,
+  "backtest": {
+    "rolling_origins": 7,
+    "cumulative_persistence_mae": 1.6331431521732986,
+    "cumulative_mean_gain_mae": 3.506161398582097,
+    "new_submission_persistence_mae": 8.503412233069515,
+    "cumulative_record_updates": 2,
+    "selected_cumulative_forecast": "persistence",
+    "selection_reason": "The rolling comparison favors carrying the current record forward. The separate new-submission error shows that this does not predict a new monthly maximum."
+  },
+  "decomposition": {
+    "rows": 75,
+    "logit_coefficients": {
+      "intercept": -14.002437474293913,
+      "compute": 0.21820307551044563,
+      "tokens": 0.009783211281054107,
+      "time": 0.020101001844573495,
+      "chat": 0.057047204332979766
+    },
+    "frontier_logit_contributions": {
+      "compute": 0.531034387855108,
+      "tokens": 0.008832945580857348,
+      "time": 0.18425918357525703,
+      "chat": 0.0
+    },
+    "total_logit_change": 0.7241265170112232,
+    "interpretation": "Associational decomposition for identified models; not a causal estimate."
+  }
+}

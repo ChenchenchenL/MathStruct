@@ -1,0 +1,9 @@
+experiment_id,model_version,data_version,Year,Source,n_rows,rows_with_any_zero,rows_with_any_missing,all_six_nonzero_rows,six_score_zero_cells,six_score_missing_cells,IFEval_zero_cells,IFEval_missing_cells,BBH_zero_cells,BBH_missing_cells,MATH_Lvl5_zero_cells,MATH_Lvl5_missing_cells,GPQA_zero_cells,GPQA_missing_cells,MUSR_zero_cells,MUSR_missing_cells,MMLU_PRO_zero_cells,MMLU_PRO_missing_cells
+EXP-408,M4-v2.1,D4V2-C1-C2-C3-C4,2019,Historical (papers/reports),1,1,0,0,5,0,0,0,1,0,1,0,1,0,1,0,1,0
+EXP-408,M4-v2.1,D4V2-C1-C2-C3-C4,2020,Historical (papers/reports),1,1,0,0,3,0,0,0,0,0,1,0,1,0,1,0,0,0
+EXP-408,M4-v2.1,D4V2-C1-C2-C3-C4,2021,Historical (papers/reports),2,2,0,0,10,0,0,0,2,0,2,0,2,0,2,0,2,0
+EXP-408,M4-v2.1,D4V2-C1-C2-C3-C4,2022,Historical (papers/reports),7,7,0,0,31,0,0,0,6,0,6,0,7,0,6,0,6,0
+EXP-408,M4-v2.1,D4V2-C1-C2-C3-C4,2023,Historical (papers/reports),13,10,0,3,37,0,0,0,6,0,6,0,10,0,6,0,9,0
+EXP-408,M4-v2.1,D4V2-C1-C2-C3-C4,2024,Historical (papers/reports),2,2,0,0,10,0,0,0,2,0,2,0,2,0,2,0,2,0
+EXP-408,M4-v2.1,D4V2-C1-C2-C3-C4,2024,Open LLM Leaderboard,2671,214,0,2457,243,0,6,0,0,0,75,0,160,0,1,0,1,0
+EXP-408,M4-v2.1,D4V2-C1-C2-C3-C4,2025,Open LLM Leaderboard,1902,118,0,1784,141,0,1,0,0,0,59,0,81,0,0,0,0,0

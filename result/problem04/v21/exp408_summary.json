@@ -1,0 +1,118 @@
+{
+  "experiment_id": "EXP-408",
+  "model_version": "M4-v2.1",
+  "data_version": "D4V2-C1-C2-C3-C4",
+  "script_sha256": "3c48cb4418b1f4fd268adbf580815b793cb9b8f81ccf3349be74c9583c819f95",
+  "shared_exp407_source_sha256": "1d5014c0c2dcb63be4b38705aa9b4b268591ad74ab825783a0f12835d9329a1d",
+  "git_head": "26757d768a19ee12e8ad6214cb53290a3386aef0",
+  "seed": 20260925,
+  "filter_counts": {
+    "c1_rows": 4576,
+    "eligible_rows": 1850,
+    "unique_model_rows": 1805,
+    "duplicate_rows_removed": 45
+  },
+  "match_counts": {
+    "unmatched": 1692,
+    "official_unique": 74,
+    "official_name_unique": 27,
+    "name_unique": 12
+  },
+  "future_dated_accepted_matches": 0,
+  "c3_audit": {
+    "c3_rows": 4599,
+    "historical_source_rows": 26,
+    "historical_rows_with_zero": 23,
+    "historical_rows_with_missing": 0,
+    "c3_used_in_fit": false,
+    "zero_interpretation": "possible_unassessed_placeholder_not_proven_true_zero"
+  },
+  "validation": {
+    "gradient_max_error": 5.663784996556842e-10,
+    "synthetic_quantile_intercept": 4.0,
+    "synthetic_bound_slope": 0.0,
+    "record_monotone": true,
+    "early_forecast_bound_check": 51.8267616133942
+  },
+  "quantile_model": {
+    "tau": 0.9,
+    "smooth_epsilon_logit": 0.03,
+    "coefficients": {
+      "intercept": -3.9046622809370235,
+      "log_compute": 0.20912555277571623,
+      "month": 0.026128754464889027,
+      "chat": 0.010774999616753817,
+      "Gemma": -0.08076131548327062,
+      "Llama": -0.014436422614027253,
+      "Phi": 0.1093223831999374,
+      "Pythia": -0.06472042123717446,
+      "Qwen": 0.16060965896557877,
+      "Yi": 0.08027374312231843
+    },
+    "n_rows": 113,
+    "n_compute_identities": 64,
+    "weighted_training_pinball_logit": 0.07181509174796039,
+    "iterations": 79,
+    "solver_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+  },
+  "family_holdout": {
+    "n_families": 9,
+    "n_test_rows": 113,
+    "mean_pinball_logit": 0.3274146916047865,
+    "quantile_pinball_logit": 0.10172904285474318,
+    "mean_coverage": 0.4065656565656566,
+    "quantile_coverage": 0.7830808080808082,
+    "quantile_improves_pinball": true
+  },
+  "historical_decomposition": {
+    "first_month_idx": 0,
+    "last_month_idx": 9,
+    "first_compute_p90_flop": 3.6960000000000814e+23,
+    "last_compute_p90_flop": 3.506e+24,
+    "f00": 23.55923468715796,
+    "f10": 33.03714442735512,
+    "f01": 28.052892873860745,
+    "f11": 38.429753223886195,
+    "total_points": 14.870518536728234,
+    "compute_points": 9.927385045111306,
+    "time_association_points": 4.943133491616928,
+    "compute_share_pct": 66.75883575002422,
+    "time_share_pct": 33.24116424997578,
+    "additivity_residual_points": 0.0
+  },
+  "backtest": [
+    {
+      "horizon_months": 1,
+      "n_origins": 6,
+      "n_record_updates": 0,
+      "persistence_mae": 0.0,
+      "mean_gain_mae": 1.5501820647684603,
+      "mean_conditional_mae": 0.5773296749818636,
+      "quantile_conditional_mae": 0.9232183741912436
+    },
+    {
+      "horizon_months": 3,
+      "n_origins": 4,
+      "n_record_updates": 0,
+      "persistence_mae": 0.0,
+      "mean_gain_mae": 5.44154818629867,
+      "mean_conditional_mae": 1.6576140288923025,
+      "quantile_conditional_mae": 2.6256794792782436
+    }
+  ],
+  "selection": {
+    "selected_method": "persistence",
+    "selection_horizon_months": 1,
+    "selected_mae_points": 0.0,
+    "quantile_beats_persistence": false
+  },
+  "bootstrap": {
+    "requested": 200,
+    "successful": 200,
+    "failed": 0,
+    "seed": 20260925,
+    "coverage_calibrated": false
+  },
+  "forecast_status": "conditional_sensitivity_not_12_24_month_validated",
+  "c3_used_in_fit": false
+}

@@ -1,0 +1,3 @@
+horizon_months,forecast,change_low,change_high,reason
+12,46.88867299768722,0.0,29.535801505515145,"No tested extrapolation beat persistence, so the record is carried forward."
+24,46.88867299768722,0.0,59.07160301103029,"No tested extrapolation beat persistence, so the record is carried forward."

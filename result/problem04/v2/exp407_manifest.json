@@ -1,0 +1,33 @@
+{
+  "experiment_id": "EXP-407",
+  "model_version": "M4-v2",
+  "data_version": "D4V2-C1-C2-C4",
+  "executed_at_utc": "2026-09-25T13:37:12.923952+00:00",
+  "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "versions": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.6"
+  },
+  "data_sha256": {
+    "leaderboard_cleaned.csv": "199891128629f24f83ed2f51211eee65a82a13f45275e79a8227d5dacc7c2846",
+    "leaderboard_enhanced.csv": "d8ae5b1e00f36bf17adb0c3fbf88c60edd54298625d2db1aa744b2b001202799",
+    "leaderboard_extended_timeseries.csv": "ab2b5715b2945ebdeeabfb18e8d040f7c68d8c76bd02c01e446959218bfcd184",
+    "epoch_all_ai_models.csv": "0b98a01bcb8d96958745b6fbe505416c38f719948d9029b38ff6233425c0e1c1"
+  },
+  "script_sha256": "1d5014c0c2dcb63be4b38705aa9b4b268591ad74ab825783a0f12835d9329a1d",
+  "git_head": "26757d768a19ee12e8ad6214cb53290a3386aef0",
+  "outputs": {
+    "result\\tables\\problem04\\exp407_match_audit.csv": "d6fb92b5c3e591b8c7ed99f34824feaa7154128d80273466560ad0b39ab5988b",
+    "result\\tables\\problem04\\exp407_monthly_record.csv": "34c1c0272eec68814b737832f1ba51bc16a06781fdb7628023fa65233d977dff",
+    "result\\tables\\problem04\\exp407_compute_monthly.csv": "54bc0790567ab90a89c989548e878861eb3c9eace92ff3efdb9c35726baf2f6d",
+    "result\\tables\\problem04\\exp407_rolling_backtest.csv": "9c3db1a9f98e25bb7d5c465e2d153122bac0dfc457e442bc22a9798571bdac7e",
+    "result\\tables\\problem04\\exp407_backtest_summary.csv": "212e385e1cbe2207a956eaff37fbe0360ea7753e0fda8efe10af4384443e74c0",
+    "result\\tables\\problem04\\exp407_scenario_forecast.csv": "8a586709c7df5cab47a12fb875f5f6f71f03500b22ddb7fe0e740cc85ac2dcb0",
+    "result\\figures\\problem04\\exp407_frontier_v2.pdf": "ff499b38700b43b89e3f20dfa39045fed0d8efe7704f19be1321aee03dd5ff0e",
+    "result\\figures\\problem04\\exp407_frontier_v2.png": "2c0425a21af01eac5549195659bbee7827dfb3ad446fe41a0223fb2443e24556",
+    "result\\figures\\problem04\\exp407_frontier_v2.json": "24f8945de907b0281879719189ce6da396f12e50e426b52b68a632b8239fceb2",
+    "result\\figures\\problem04\\exp407_frontier_v2.pdf.caption.md": "fc6857e2d508eeb48d116e181f55d98ee5709a4e6c4ecfa2011396857c90841c",
+    "result\\problem04\\v2\\exp407_summary.json": "b7396a7aa7386c54b0cbe6187d635bf3ebcd32af95994379b4991ee3f0274fd8"
+  }
+}

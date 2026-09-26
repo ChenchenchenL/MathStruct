@@ -1,0 +1,39 @@
+{
+  "experiment_id": "EXP-408",
+  "model_version": "M4-v2.1",
+  "data_version": "D4V2-C1-C2-C3-C4",
+  "executed_at_utc": "2026-09-25T13:55:57.582334+00:00",
+  "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "versions": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.6",
+    "scipy": "1.17.1",
+    "matplotlib": "3.11.2"
+  },
+  "data_sha256": {
+    "leaderboard_cleaned.csv": "199891128629f24f83ed2f51211eee65a82a13f45275e79a8227d5dacc7c2846",
+    "leaderboard_enhanced.csv": "d8ae5b1e00f36bf17adb0c3fbf88c60edd54298625d2db1aa744b2b001202799",
+    "leaderboard_extended_timeseries.csv": "ab2b5715b2945ebdeeabfb18e8d040f7c68d8c76bd02c01e446959218bfcd184",
+    "epoch_all_ai_models.csv": "0b98a01bcb8d96958745b6fbe505416c38f719948d9029b38ff6233425c0e1c1"
+  },
+  "script_sha256": "3c48cb4418b1f4fd268adbf580815b793cb9b8f81ccf3349be74c9583c819f95",
+  "shared_exp407_source_sha256": "1d5014c0c2dcb63be4b38705aa9b4b268591ad74ab825783a0f12835d9329a1d",
+  "git_head": "26757d768a19ee12e8ad6214cb53290a3386aef0",
+  "outputs": {
+    "result\\tables\\problem04\\exp408_match_audit.csv": "ba86f21eeae84e810e124f992b58494911f5de0c33095222a60f03377c87dc77",
+    "result\\tables\\problem04\\exp408_monthly_record.csv": "555fd96e6614173dbd711234ab7439259790d15a9c96f97f3852cbfb73b0be95",
+    "result\\tables\\problem04\\exp408_c3_year_source_audit.csv": "b0ceb7aa00a3e7e37d7d5cd2ecf4011f34debaf21a671f3bafc4a914515e050b",
+    "result\\tables\\problem04\\exp408_c3_historical_rows.csv": "a66bcefd42d00a45d71cdcd85e290b195513aa6fd639ccb7698e81abaa933d71",
+    "result\\tables\\problem04\\exp408_family_holdout.csv": "f2268e54dcde5c3c9ed6038f5beb9dc3fed06813ba588e3cc0dd39760b14ff64",
+    "result\\tables\\problem04\\exp408_rolling_backtest.csv": "4ba980b2cd78c45c95f76f543f2fc21c5aea06d5bcef1080846dc1e219f72bcc",
+    "result\\tables\\problem04\\exp408_backtest_summary.csv": "2c2d33760286016e31627667884c0bd0c9d01bb538775102048f94151cc78878",
+    "result\\tables\\problem04\\exp408_scenario_forecast.csv": "a767d1cd09770ea58dd743490f34d09a104f618987b9cb50b2688bd6bc7ca93a",
+    "result\\tables\\problem04\\exp408_compute_monthly.csv": "b437340cc61e4fcdf771a72c146a347297d93d8f004c26f5f1b588a8b4a86bcd",
+    "result\\figures\\problem04\\exp408_frontier_quantile.pdf": "45a185e3701d5b0ac0260d50fbe80843d8a6b542e55e5bb3e7f21c110068642f",
+    "result\\figures\\problem04\\exp408_frontier_quantile.png": "6def213520f7a825b0fad164d7e1baf5ad9463b229caa53d9314613fb6c454c5",
+    "result\\figures\\problem04\\exp408_frontier_quantile.json": "0fce1446640b37719747c37ddda7b1493d16a9b56970944f7d6adebb1775dd2a",
+    "result\\figures\\problem04\\exp408_frontier_quantile.pdf.caption.md": "957864a7b7be8d23cf9baae903fca2c0860549b558a9f88979b14c54c0cf3e87",
+    "result\\problem04\\v21\\exp408_summary.json": "0a5025af5b3241531a3084c14fcffe58bd427d7e0853be8db993edc97fd87839"
+  }
+}

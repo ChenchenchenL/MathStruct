@@ -469,11 +469,14 @@ class DynamicSFAModel:
             # 阻尼外推
             last_m = self.z_series_.index.max()
             last_z = self.z_series_[last_m]
-            # 计算近期月度斜率
-            slope = (self.z_series_.iloc[-1] - self.z_series_.iloc[max(0, len(self.z_series_)-3)]) / 3.0
+            # 近期状态首尾的差值按实际月份跨度折算。
+            start_idx = max(0, len(self.z_series_) - 3)
+            span = last_m - self.z_series_.index[start_idx]
+            slope = (self.z_series_.iloc[-1] - self.z_series_.iloc[start_idx]) / max(span, 1)
             dt = month_idx - last_m
             # 阻尼因子衰减外推
-            z_t = last_z + slope * (1.0 - self.delta**dt) / (1.0 - self.delta)
+            trend_steps = dt if np.isclose(self.delta, 1.0) else (1.0 - self.delta**dt) / (1.0 - self.delta)
+            z_t = last_z + slope * trend_steps
         else:
             z_t = self.z_series_.iloc[0]
 

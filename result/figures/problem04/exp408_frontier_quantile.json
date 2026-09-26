@@ -1,0 +1,29 @@
+{
+  "figure_id": "EXP408-F01",
+  "experiment_id": "EXP-408",
+  "problem": "problem-04",
+  "model_version": "M4-v2.1",
+  "data_version": "D4V2-C1-C2-C3-C4",
+  "source_data_sha256": {
+    "leaderboard_cleaned.csv": "199891128629f24f83ed2f51211eee65a82a13f45275e79a8227d5dacc7c2846",
+    "leaderboard_enhanced.csv": "d8ae5b1e00f36bf17adb0c3fbf88c60edd54298625d2db1aa744b2b001202799",
+    "leaderboard_extended_timeseries.csv": "ab2b5715b2945ebdeeabfb18e8d040f7c68d8c76bd02c01e446959218bfcd184",
+    "epoch_all_ai_models.csv": "0b98a01bcb8d96958745b6fbe505416c38f719948d9029b38ff6233425c0e1c1"
+  },
+  "script": "src/problem04/exp08_frontier_quantile.py",
+  "script_sha256": "3c48cb4418b1f4fd268adbf580815b793cb9b8f81ccf3349be74c9583c819f95",
+  "shared_source_sha256": "1d5014c0c2dcb63be4b38705aa9b4b268591ad74ab825783a0f12835d9329a1d",
+  "formats": [
+    "pdf",
+    "png"
+  ],
+  "dpi_png": 300,
+  "width_mm": 180,
+  "height_mm": 91,
+  "title_in_figure": false,
+  "axes": {
+    "x": "months since 2024-06",
+    "y": "score out of 100"
+  },
+  "notes": "Dashed: unvalidated conditional sensitivities. Dotted: backtest-selected forecast. No predictive coverage claim."
+}

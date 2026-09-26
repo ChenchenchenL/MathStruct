@@ -64,3 +64,12 @@
 ### 3.3 C6 桥接数据覆盖域与外推区域界定（P0-2 闭合）
 - **实测覆盖域**：$L \in [1.65, 2.84]$ Nats, $S_{\text{avg}} \in [3.80, 47.98]$ 分；
 - **外推区域**：$S > 47.98$ 分；未来预测目标（55–80 分）在能力端属于纯外推。
+# M4-v2 数据版本补充（2026-09-25，运行前冻结）
+
+`D4V2-C1`：`leaderboard_cleaned.csv`，SHA256 `199891128629f24f83ed2f51211eee65a82a13f45275e79a8227d5dacc7c2846`；模型名为身份键，`Submission Date` 为日，`Average ⬆️` 为 0–100 分，`Type` 为模型类型，`Hub License` 为许可。重复模型按 P4V2-01 去重，月序列 2024-06 至 2025-03。
+
+`D4V2-C2`：`leaderboard_enhanced.csv`，SHA256 `d8ae5b1e00f36bf17adb0c3fbf88c60edd54298625d2db1aa744b2b001202799`；与 C1 逐行身份校验后，只取 `Epoch_AI_Publication_Date`、`Epoch_AI_Organization`、`Epoch_AI_Open_Weights`。匹配按 P4V2-02。
+
+`D4V2-C4`：`epoch_all_ai_models.csv`，SHA256 `0b98a01bcb8d96958745b6fbe505416c38f719948d9029b38ff6233425c0e1c1`；`Publication date` 为日，`Training compute (FLOP)` 为 FLOPs，`Training dataset size (total)` 为 tokens，`Parameters` 为参数个数。仅时间一致、唯一且算力有效的关联行进入条件模型。
+
+`D4V2-C3`：`leaderboard_extended_timeseries.csv`，SHA256 `ab2b5715b2945ebdeeabfb18e8d040f7c68d8c76bd02c01e446959218bfcd184`。早年综合分含结构性占位零分，**不进入 M4-v2 主拟合与回测**；仅用作不能延长同口径测试窗的审计依据。

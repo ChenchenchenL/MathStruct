@@ -1,0 +1,89 @@
+{
+  "experiment_id": "EXP-407",
+  "model_version": "M4-v2",
+  "data_version": "D4V2-C1-C2-C4",
+  "script_sha256": "1d5014c0c2dcb63be4b38705aa9b4b268591ad74ab825783a0f12835d9329a1d",
+  "git_head": "26757d768a19ee12e8ad6214cb53290a3386aef0",
+  "seed": 20260925,
+  "filter_counts": {
+    "c1_rows": 4576,
+    "eligible_rows": 1850,
+    "unique_model_rows": 1805,
+    "duplicate_rows_removed": 45
+  },
+  "match_counts": {
+    "unmatched": 1692,
+    "official_unique": 74,
+    "official_name_unique": 27,
+    "name_unique": 12
+  },
+  "rejection_counts": {
+    "no_unique_match": 1556,
+    "official_ambiguous": 119,
+    "official_date_after_submission": 16,
+    "name_date_or_compute_invalid": 1
+  },
+  "future_dated_accepted_matches": 0,
+  "model": {
+    "coefficients": {
+      "intercept": -4.927920706642994,
+      "log_compute": 0.24367308467456072,
+      "month": 0.014300309821213587,
+      "chat": -0.31333017623994125,
+      "Gemma": 0.07950219424462887,
+      "Llama": 0.07469763160696113,
+      "Phi": 0.3648858038136329,
+      "Pythia": 0.08798651551241961,
+      "Qwen": 0.31817913483665483,
+      "Yi": 0.21520651540846084
+    },
+    "weighted_r2_logit": 0.6842344451142897,
+    "no_family_weighted_r2_logit": 0.5977006455398041,
+    "n_rows": 113,
+    "n_compute_identities": 64,
+    "solver_status": 3,
+    "solver_message": "The unconstrained solution is optimal."
+  },
+  "historical_decomposition": {
+    "first_month_idx": 0,
+    "last_month_idx": 9,
+    "first_compute_p90_flop": 3.6960000000000814e+23,
+    "last_compute_p90_flop": 3.506e+24,
+    "f00": 12.131866562801678,
+    "f10": 19.282094011831823,
+    "f01": 13.572047188458138,
+    "f11": 21.364698805535884,
+    "total_points": 9.232832242734206,
+    "compute_points": 7.471439533053946,
+    "time_association_points": 1.7613927096802602,
+    "compute_share_pct": 80.9225093300445,
+    "time_share_pct": 19.077490669955488,
+    "additivity_residual_points": 0.0
+  },
+  "backtest": [
+    {
+      "horizon_months": 1,
+      "n_origins": 6,
+      "n_record_updates": 0,
+      "persistence_mae": 0.0,
+      "mean_gain_mae": 1.5501820647684603,
+      "conditional_model_mae": 0.5773296749818636
+    },
+    {
+      "horizon_months": 3,
+      "n_origins": 4,
+      "n_record_updates": 0,
+      "persistence_mae": 0.0,
+      "mean_gain_mae": 5.44154818629867,
+      "conditional_model_mae": 1.6576140288923025
+    }
+  ],
+  "selection": {
+    "selected_method": "persistence",
+    "selection_horizon_months": 1,
+    "selected_mae_points": 0.0,
+    "conditional_beats_persistence": false
+  },
+  "forecast_status": "conditional_sensitivity_not_12_24_month_validated",
+  "c3_used_in_fit": false
+}
